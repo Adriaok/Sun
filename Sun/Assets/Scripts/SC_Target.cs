@@ -20,14 +20,12 @@ public class SC_Target : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        Debug.Log("On enter");
         renderer.material.color = Color.blue;
         isHovered = true;
     }
 
     private void OnMouseExit()
     {
-        Debug.Log("On exit");
         if (!isSelected)
         {
             renderer.material.color = Color.white;
@@ -41,20 +39,25 @@ public class SC_Target : MonoBehaviour
 
     private void CheckIfSelected()
     {
-        if (isHovered && Input.GetMouseButtonDown(0) /*&& Input.GetKeyDown(KeyCode.Alpha1)*/)
+        if (isHovered && Input.GetMouseButtonDown(0))
         {
             if (isSelected)
             {
                 isSelected = false;
                 renderer.material.color = Color.blue;
-                Debug.Log("Deselect");
+                BroadcastMessage("UpdateIsSelected_SC_Follower", false);
             }
             else
             {
                 isSelected = true;
                 renderer.material.color = Color.green;
-                Debug.Log("Select");
+                BroadcastMessage("UpdateIsSelected_SC_Follower", true);
             }
         }
+    }
+
+    public void UpdateIsSelected_SC_Target(bool _isSelected)
+    {
+        isSelected = _isSelected;
     }
 }

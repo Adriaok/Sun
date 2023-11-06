@@ -72,6 +72,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transformToFollow: {fileID: 0}
   isLocked: 0
+  isSelected: 0
 --- !u!114 &3859597068571353034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,6 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e2d7a0cb4e2a6b4792a8b85e8fde0cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSelected: 0
 --- !u!136 &-779907520205084696
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public class FollowerManager : MonoBehaviour
     //Test
     float elapsedTime = 0.0f;
     float secondsBetweenSpawn = 2.0f;
-    int maxFollowers = 1;
+    int maxFollowers = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -23,20 +23,9 @@ public class FollowerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Test
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-            foreach (KeyValuePair<string, GameObject> follower in followers)
-            {
-                if (follower.Value.GetComponent<SC_Follower>().isLocked)
-                {
-                    UnlockFollower(follower.Key);
-                }
-                else
-                    LockFollower(follower.Key);
-            }
+        FollowPlayer();
 
-        }
+        CheckActionsOnFollowers();
         
         //Test
         elapsedTime += Time.deltaTime;
@@ -46,18 +35,45 @@ public class FollowerManager : MonoBehaviour
             elapsedTime = 0.0f;
             AddFollower();
         }
-
-        FollowPlayer();
     }
 
     void LockFollower(string id)
     {
         followers[id].GetComponent<SC_Follower>().isLocked = true;
+        followers[id].GetComponent<SC_Follower>().UpdateIsSelectedAndBroadcast(false);
     }
 
     void UnlockFollower(string id)
     {
         followers[id].GetComponent<SC_Follower>().isLocked = false;
+        followers[id].GetComponent<SC_Follower>().UpdateIsSelectedAndBroadcast(false);
+    }
+
+    void CheckActionsOnFollowers()
+    {
+        CheckIsLockedOnFollowers();
+    }
+
+    void CheckIsLockedOnFollowers()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            foreach (KeyValuePair<string, GameObject> follower in followers)
+            {
+
+                if (follower.Value.GetComponent<SC_Follower>().isSelected && follower.Value.GetComponent<SC_Follower>().isLocked)
+                {
+                    UnlockFollower(follower.Key);
+                    Debug.Log("Unlock " + follower.Key);
+                }
+                else if (follower.Value.GetComponent<SC_Follower>().isSelected && !follower.Value.GetComponent<SC_Follower>().isLocked)
+                {
+                    LockFollower(follower.Key);
+                    Debug.Log("Lock " + follower.Key);
+                }
+            }
+
+        }
     }
 
     void FollowPlayer()
@@ -67,6 +83,7 @@ public class FollowerManager : MonoBehaviour
             if(!follower.Value.GetComponent<SC_Follower>().isLocked)
             {
                 follower.Value.GetComponent<SC_Follower>().FollowPlayer();
+                Debug.Log(follower.Key + " is following player");
             }
         }
     }
@@ -98,7 +115,7 @@ public class FollowerManager : MonoBehaviour
         } while (!validID);
 
         //Create follower and add it to the dictionary with the id as key
-        GameObject newFollower = Instantiate(followerPrefab, new Vector3(3, 1, 0), Quaternion.identity);
+        GameObject newFollower = Instantiate(followerPrefab, new Vector3(Random.Range(-10, 10), 1, 0), Quaternion.identity);
         newFollower.GetComponent<SC_Follower>().Init();
         followers[newID] = newFollower;
 
