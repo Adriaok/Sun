@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Follower : MonoBehaviour
+public class SC_Follower : MonoBehaviour
 {    
     public Transform transformToFollow;
     NavMeshAgent agent;
@@ -13,13 +13,19 @@ public class Follower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        Init();
     }
 
     // Update is called once per frame
     void Update()
     {
   
+    }
+
+    public void Init()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        transformToFollow = GameObject.Find("Player").transform;
     }
 
     public void FollowPlayer()
