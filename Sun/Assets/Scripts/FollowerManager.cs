@@ -12,7 +12,7 @@ public class FollowerManager : MonoBehaviour
     //Test
     float elapsedTime = 0.0f;
     float secondsBetweenSpawn = 2.0f;
-    int maxFollowers = 2;
+    int maxFollowers = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +52,7 @@ public class FollowerManager : MonoBehaviour
     void CheckActionsOnFollowers()
     {
         CheckIsLockedOnFollowers();
+        CheckRecallAllFollowers();
     }
 
     void CheckIsLockedOnFollowers()
@@ -74,6 +75,20 @@ public class FollowerManager : MonoBehaviour
             }
 
         }
+    }
+
+    void CheckRecallAllFollowers()
+    {
+        if(/*Input.GetKeyDown(KeyCode.Space) &&*/ Input.GetKeyDown(KeyCode.Return))
+        {
+            foreach (KeyValuePair<string, GameObject> follower in followers)
+            {
+                if (follower.Value.GetComponent<SC_Follower>().isLocked)
+                    UnlockFollower(follower.Key);
+            }
+        }
+
+        Debug.Log("Recall all followers");
     }
 
     void FollowPlayer()
