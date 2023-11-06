@@ -4,13 +4,27 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class SC_Follower : MonoBehaviour
-{    
-    public Transform transformToFollow;
-    NavMeshAgent agent;
+{
+    //public Transform transformToFollow;
+    //NavMeshAgent agent;
+
+    [SerializeField] private float minDistance = 3.0f;
+    [SerializeField] private float maxDistance = 5.0f;
+
+    private bool isInPlayerFaction;
+    private Transform followTarget;
+    private Rigidbody rb;
 
     public bool isLocked = false;
     public bool isSelected = false;
-    
+
+    //Harcoded, should do find
+    private float playerSpeed = 7.5f;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>(); 
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -20,19 +34,56 @@ public class SC_Follower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-  
+        if (followTarget != null)
+        {
+            //Distance between this NPC and the follow target
+            float distance = Vector3.Distance(transform.position, followTarget.position);
+
+            //If too far away from the target
+            if (distance > maxDistance)
+            {
+                //Move in the direction of the target
+                Vector3 direction = (followTarget.position - transform.position).normalized;
+
+                //Smoothly change speed to match player's speed
+                rb.velocity = Vector3.Lerp(
+                    rb.velocity,
+                    direction * playerSpeed,
+                    Time.deltaTime * 6);
+            }
+
+            //If too close to target
+            else if(distance < minDistance)
+            {
+                //Reversed direction is the direction away from the target, to move further away
+                Vector3 reversedDirection = (transform.position - followTarget.position).normalized;
+
+                //Smoothly change speed
+                rb.velocity = Vector3.Lerp(
+                    rb.velocity,
+                    reversedDirection * playerSpeed,
+                    Time.deltaTime * 6);
+            }
+
+            //If a t a good distance from target, reduce speed to zero
+            else
+            {
+                rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime * 6);
+            }
+        }
     }
 
     public void Init()
     {
-        agent = GetComponent<NavMeshAgent>();
-        transformToFollow = GameObject.Find("Player").transform;
+        //agent = GetComponent<NavMeshAgent>();
+        //transformToFollow = GameObject.Find("Player").transform;
+        followTarget = GameObject.Find("Player").transform;
     }
 
     public void FollowPlayer()
     {
         //Follow the player
-        agent.destination = transformToFollow.position;
+        //agent.destination = transformToFollow.position;
     }
 
     public void UpdateIsSelected_SC_Follower(bool _isSelected)
