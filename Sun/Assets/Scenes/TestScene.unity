@@ -1678,3 +1678,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transformToFollow: {fileID: 447079934}
+  isLocked: 0

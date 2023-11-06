@@ -4,12 +4,11 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class Follower : MonoBehaviour
-{
-    //Transform that NPC has to follow
+{    
     public Transform transformToFollow;
-
-    //NavMeshAgent variable
     NavMeshAgent agent;
+
+    public bool isLocked = false;
     
     // Start is called before the first frame update
     void Start()
@@ -19,6 +18,11 @@ public class Follower : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+  
+    }
+
+    public void FollowPlayer()
     {
         //Follow the player
         agent.destination = transformToFollow.position;
