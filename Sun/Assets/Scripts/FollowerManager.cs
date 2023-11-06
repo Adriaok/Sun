@@ -12,6 +12,7 @@ public class FollowerManager : MonoBehaviour
     //Test
     float elapsedTime = 0.0f;
     float secondsBetweenSpawn = 2.0f;
+    int maxFollowers = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -23,9 +24,24 @@ public class FollowerManager : MonoBehaviour
     void Update()
     {
         //Test
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            foreach (KeyValuePair<string, GameObject> follower in followers)
+            {
+                if (follower.Value.GetComponent<SC_Follower>().isLocked)
+                {
+                    UnlockFollower(follower.Key);
+                }
+                else
+                    LockFollower(follower.Key);
+            }
+
+        }
+        
+        //Test
         elapsedTime += Time.deltaTime;
 
-        if (elapsedTime > secondsBetweenSpawn)
+        if (elapsedTime > secondsBetweenSpawn && followers.Count < maxFollowers)
         {
             elapsedTime = 0.0f;
             AddFollower();
