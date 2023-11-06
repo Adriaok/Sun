@@ -12,7 +12,7 @@ public class FollowerManager : MonoBehaviour
     //Test
     float elapsedTime = 0.0f;
     float secondsBetweenSpawn = 2.0f;
-    int maxFollowers = 10;
+    int maxFollowers = 2;
 
     // Start is called before the first frame update
     void Start()

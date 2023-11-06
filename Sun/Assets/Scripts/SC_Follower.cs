@@ -34,6 +34,21 @@ public class SC_Follower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+    public void Init()
+    {
+        //agent = GetComponent<NavMeshAgent>();
+        //transformToFollow = GameObject.Find("Player").transform;
+        followTarget = GameObject.Find("Player").transform;
+    }
+
+    public void FollowPlayer()
+    {
+        //Follow the player
+        //agent.destination = transformToFollow.position;
+
         if (followTarget != null)
         {
             //Distance between this NPC and the follow target
@@ -53,7 +68,7 @@ public class SC_Follower : MonoBehaviour
             }
 
             //If too close to target
-            else if(distance < minDistance)
+            else if (distance < minDistance)
             {
                 //Reversed direction is the direction away from the target, to move further away
                 Vector3 reversedDirection = (transform.position - followTarget.position).normalized;
@@ -71,19 +86,6 @@ public class SC_Follower : MonoBehaviour
                 rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime * 6);
             }
         }
-    }
-
-    public void Init()
-    {
-        //agent = GetComponent<NavMeshAgent>();
-        //transformToFollow = GameObject.Find("Player").transform;
-        followTarget = GameObject.Find("Player").transform;
-    }
-
-    public void FollowPlayer()
-    {
-        //Follow the player
-        //agent.destination = transformToFollow.position;
     }
 
     public void UpdateIsSelected_SC_Follower(bool _isSelected)
