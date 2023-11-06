@@ -9,6 +9,7 @@ public class SC_Follower : MonoBehaviour
     NavMeshAgent agent;
 
     public bool isLocked = false;
+    public bool isSelected = false;
     
     // Start is called before the first frame update
     void Start()
