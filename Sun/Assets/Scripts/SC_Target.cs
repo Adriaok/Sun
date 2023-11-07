@@ -21,24 +21,17 @@ public class SC_Target : MonoBehaviour
     {
         CheckIfSelected();
         CheckIfDragging();
+
+        UpdateMaterialColor();
     }
 
     private void OnMouseEnter()
     {
-        renderer.material.color = Color.blue;
         isHovered = true;
     }
 
     private void OnMouseExit()
     {
-        if (!isSelected)
-        {
-            renderer.material.color = Color.white;
-        }
-        else
-        {
-            renderer.material.color = Color.green;
-        }
         isHovered = false;
     }
 
@@ -70,18 +63,28 @@ public class SC_Target : MonoBehaviour
             if (isSelected)
             {
                 isSelected = false;
-                renderer.material.color = Color.blue;
                 BroadcastMessage("UpdateIsSelected_SC_Follower", false);
             }
             else
             {
                 isSelected = true;
-                renderer.material.color = Color.green;
                 BroadcastMessage("UpdateIsSelected_SC_Follower", true);
             }
        
         
         }
+    }
+
+    private void UpdateMaterialColor()
+    {
+        if (isHovered && !isSelected)
+            renderer.material.color = Color.blue;
+
+        else if (isSelected)
+            renderer.material.color = Color.green;
+
+        else
+            renderer.material.color = Color.white;
     }
 
     private void CheckIfDragging()
