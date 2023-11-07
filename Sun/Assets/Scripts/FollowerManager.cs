@@ -9,6 +9,10 @@ public class FollowerManager : MonoBehaviour
     public Dictionary<string, GameObject> followers = new Dictionary<string, GameObject>();
     private List<string> unavailableIDs = new List<string>();
 
+    //If true, the flock won't move. If false, it will follow the player
+    bool lockedFlock = true;
+
+
     //Test
     float elapsedTime = 0.0f;
     float secondsBetweenSpawn = 2.0f;
@@ -23,7 +27,8 @@ public class FollowerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FollowPlayer();
+        if(!lockedFlock)
+            FollowPlayer();
 
         CheckActionsOnFollowers();
         
@@ -52,6 +57,7 @@ public class FollowerManager : MonoBehaviour
     void CheckActionsOnFollowers()
     {
         CheckIsLockedOnFollowers();
+        CheckIsLockedOnFlock();
         CheckRecallAllFollowers();
     }
 
@@ -77,6 +83,23 @@ public class FollowerManager : MonoBehaviour
         }
     }
 
+    void CheckIsLockedOnFlock()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            if (lockedFlock)
+            {
+                lockedFlock = false;
+                Debug.Log("Unlock entire flock");
+            }
+            else
+            {
+                lockedFlock = true;
+                Debug.Log("Lock entire flock");
+            }
+        }
+    }
+
     void CheckRecallAllFollowers()
     {
         if(/*Input.GetKeyDown(KeyCode.Space) &&*/ Input.GetKeyDown(KeyCode.Return))
@@ -86,9 +109,9 @@ public class FollowerManager : MonoBehaviour
                 if (follower.Value.GetComponent<SC_Follower>().isLocked)
                     UnlockFollower(follower.Key);
             }
-        }
 
-        Debug.Log("Recall all followers");
+            Debug.Log("Recall all followers");
+        }
     }
 
     void FollowPlayer()
@@ -98,7 +121,6 @@ public class FollowerManager : MonoBehaviour
             if(!follower.Value.GetComponent<SC_Follower>().isLocked)
             {
                 follower.Value.GetComponent<SC_Follower>().FollowPlayer();
-                Debug.Log(follower.Key + " is following player");
             }
         }
     }

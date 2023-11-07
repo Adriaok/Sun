@@ -17,6 +17,7 @@ public class SC_Follower : MonoBehaviour
 
     public bool isLocked = false;
     public bool isSelected = false;
+    public bool isDragging = false;
 
     //Harcoded, should do find
     private float playerSpeed = 7.5f;
@@ -80,7 +81,7 @@ public class SC_Follower : MonoBehaviour
                     Time.deltaTime * 6);
             }
 
-            //If a t a good distance from target, reduce speed to zero
+            //If at a good distance from target, reduce speed to zero
             else
             {
                 rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime * 6);
@@ -97,5 +98,10 @@ public class SC_Follower : MonoBehaviour
     {
         UpdateIsSelected_SC_Follower(_isSelected);
         BroadcastMessage("UpdateIsSelected_SC_Target", _isSelected);
+    }
+
+    public void UpdateIsDragging_SC_Follower(bool _isDragging)
+    {
+        isDragging = _isDragging;
     }
 }

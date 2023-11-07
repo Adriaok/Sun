@@ -8,7 +8,7 @@ public class SC_Target : MonoBehaviour
     private bool isHovered = false;
     public bool isSelected = false;
 
-    private bool dragging = false;
+    private bool isDragging = false;
     private float distance;
     private Vector3 startDist;
 
@@ -20,13 +20,7 @@ public class SC_Target : MonoBehaviour
     void Update()
     {
         CheckIfSelected();
-
-        if (dragging)
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Vector3 rayPoint = ray.GetPoint(distance);
-            transform.position = rayPoint + startDist;
-        }
+        CheckIfDragging();
     }
 
     private void OnMouseEnter()
@@ -51,15 +45,22 @@ public class SC_Target : MonoBehaviour
     private void OnMouseDown()
     {
         distance = Vector3.Distance(transform.position, Camera.main.transform.position);
-        dragging = true;
+        isDragging = true;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Vector3 rayPoint = ray.GetPoint(distance);
         startDist = transform.position - rayPoint;
+        BroadcastMessage("UpdateIsDragging_SC_Follower", true);
+
     }
 
     private void OnMouseUp()
     {
-        dragging = false;
+        isDragging = false;
+        BroadcastMessage("UpdateIsDragging_SC_Follower", false);
+        
+        //Code to deselect the follower when dropping it 
+        //isSelected = false;
+        //BroadcastMessage("UpdateIsSelected_SC_Follower", false);
     }
 
     private void CheckIfSelected()
@@ -78,6 +79,18 @@ public class SC_Target : MonoBehaviour
                 renderer.material.color = Color.green;
                 BroadcastMessage("UpdateIsSelected_SC_Follower", true);
             }
+       
+        
+        }
+    }
+
+    private void CheckIfDragging()
+    {
+        if (isDragging)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Vector3 rayPoint = ray.GetPoint(distance);
+            transform.position = rayPoint + startDist;
         }
     }
 
