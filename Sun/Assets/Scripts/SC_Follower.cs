@@ -13,7 +13,7 @@ public class SC_Follower : MonoBehaviour
 
     private bool isInPlayerFaction;
     private Transform followTarget;
-    private Rigidbody rb;
+    public Rigidbody rb;
 
     public bool isLocked = false;
     public bool isSelected = false;
@@ -21,6 +21,10 @@ public class SC_Follower : MonoBehaviour
 
     //Harcoded, should do find
     private float playerSpeed = 7.5f;
+
+    //TODO: Adjust values so they make sense
+    private float max_velocity = 7.0f;
+    private float max_force = 10.0f;
 
     private void Awake()
     {
@@ -47,9 +51,28 @@ public class SC_Follower : MonoBehaviour
 
     public void FollowPlayer()
     {
-        //Follow the player
-        //agent.destination = transformToFollow.position;
+        if(followTarget != null)
+        {
+            //Calculate desired velocity
+            Vector3 desiredVelocity = (followTarget.position - transform.position).normalized;
+            desiredVelocity *= max_velocity;
 
+            //Steering force, without acceleration
+            Vector3 steeringForce = (desiredVelocity - rb.velocity);
+            steeringForce /= max_velocity;
+            steeringForce *= max_force;
+
+            //Steering force, with acceleration
+            steeringForce = steeringForce / rb.mass;
+
+            //Calculate rb's velocity
+            Vector3 velocity = rb.velocity + steeringForce * Time.deltaTime;
+            velocity = Vector3.ClampMagnitude(velocity, max_velocity);
+            rb.velocity = velocity;
+            
+        }
+        
+        /*
         if (followTarget != null)
         {
             //Distance between this NPC and the follow target
@@ -87,6 +110,19 @@ public class SC_Follower : MonoBehaviour
                 rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime * 6);
             }
         }
+        */
+    }
+
+    public void Lock()
+    {
+        isLocked = true;
+        rb.isKinematic = true;
+    }
+
+    public void Unlock()
+    {
+        isLocked = false;
+        rb.isKinematic = false;
     }
 
     public void UpdateIsSelected_SC_Follower(bool _isSelected)

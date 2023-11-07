@@ -44,13 +44,13 @@ public class FollowerManager : MonoBehaviour
 
     void LockFollower(string id)
     {
-        followers[id].GetComponent<SC_Follower>().isLocked = true;
+        followers[id].GetComponent<SC_Follower>().Lock();
         followers[id].GetComponent<SC_Follower>().UpdateIsSelectedAndBroadcast(false);
     }
 
     void UnlockFollower(string id)
     {
-        followers[id].GetComponent<SC_Follower>().isLocked = false;
+        followers[id].GetComponent<SC_Follower>().Unlock();
         followers[id].GetComponent<SC_Follower>().UpdateIsSelectedAndBroadcast(false);
     }
 
@@ -90,11 +90,22 @@ public class FollowerManager : MonoBehaviour
             if (lockedFlock)
             {
                 lockedFlock = false;
+
+                foreach (KeyValuePair<string, GameObject> follower in followers)
+                {
+                    follower.Value.GetComponent<SC_Follower>().rb.isKinematic = false;
+                }
                 Debug.Log("Unlock entire flock");
             }
             else
             {
                 lockedFlock = true;
+
+                foreach (KeyValuePair<string, GameObject> follower in followers)
+                {
+                    follower.Value.GetComponent<SC_Follower>().rb.isKinematic = true;
+                }
+
                 Debug.Log("Lock entire flock");
             }
         }
