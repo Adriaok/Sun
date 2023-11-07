@@ -112,7 +112,7 @@ public class FollowerManager : MonoBehaviour
 
     void CheckRecallAllFollowers()
     {
-        if(/*Input.GetKeyDown(KeyCode.Space) &&*/ Input.GetKeyDown(KeyCode.Return))
+        if(/*Input.GetKeyDown(KeyCode.Space) &&*/ Input.GetKeyDown(KeyCode.Alpha3))
         {
             foreach (KeyValuePair<string, GameObject> follower in followers)
             {
