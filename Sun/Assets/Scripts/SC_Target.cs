@@ -8,6 +8,10 @@ public class SC_Target : MonoBehaviour
     private bool isHovered = false;
     public bool isSelected = false;
 
+    private bool dragging = false;
+    private float distance;
+    private Vector3 startDist;
+
     void Start()
     {
         renderer = GetComponentInChildren<MeshRenderer>();
@@ -16,6 +20,13 @@ public class SC_Target : MonoBehaviour
     void Update()
     {
         CheckIfSelected();
+
+        if (dragging)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Vector3 rayPoint = ray.GetPoint(distance);
+            transform.position = rayPoint + startDist;
+        }
     }
 
     private void OnMouseEnter()
@@ -35,6 +46,20 @@ public class SC_Target : MonoBehaviour
             renderer.material.color = Color.green;
         }
         isHovered = false;
+    }
+
+    private void OnMouseDown()
+    {
+        distance = Vector3.Distance(transform.position, Camera.main.transform.position);
+        dragging = true;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Vector3 rayPoint = ray.GetPoint(distance);
+        startDist = transform.position - rayPoint;
+    }
+
+    private void OnMouseUp()
+    {
+        dragging = false;
     }
 
     private void CheckIfSelected()
