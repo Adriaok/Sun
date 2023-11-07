@@ -83,6 +83,14 @@ public class FollowerManager : MonoBehaviour
         }
     }
 
+    void SetFollowersRbIsKinematic(bool _isKinematic)
+    {
+        foreach (KeyValuePair<string, GameObject> follower in followers)
+        {
+            follower.Value.GetComponent<SC_Follower>().rb.isKinematic = _isKinematic;
+        }
+    }
+
     void CheckIsLockedOnFlock()
     {
         if(Input.GetKeyDown(KeyCode.Alpha2))
@@ -90,22 +98,13 @@ public class FollowerManager : MonoBehaviour
             if (lockedFlock)
             {
                 lockedFlock = false;
-
-                foreach (KeyValuePair<string, GameObject> follower in followers)
-                {
-                    follower.Value.GetComponent<SC_Follower>().rb.isKinematic = false;
-                }
+                SetFollowersRbIsKinematic(false);
                 Debug.Log("Unlock entire flock");
             }
             else
             {
                 lockedFlock = true;
-
-                foreach (KeyValuePair<string, GameObject> follower in followers)
-                {
-                    follower.Value.GetComponent<SC_Follower>().rb.isKinematic = true;
-                }
-
+                SetFollowersRbIsKinematic(true);
                 Debug.Log("Lock entire flock");
             }
         }
