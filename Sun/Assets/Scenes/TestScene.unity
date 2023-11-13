@@ -534,7 +534,7 @@ GameObject:
   - component: {fileID: 593650843}
   - component: {fileID: 593650842}
   - component: {fileID: 593650841}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1134,7 +1134,7 @@ GameObject:
   - component: {fileID: 998395765}
   - component: {fileID: 998395764}
   - component: {fileID: 998395763}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1885,7 +1885,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1957472790}
   - component: {fileID: 1957472789}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LightUpObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1935,7 +1935,7 @@ GameObject:
   - component: {fileID: 2144409104}
   - component: {fileID: 2144409103}
   - component: {fileID: 2144409102}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
