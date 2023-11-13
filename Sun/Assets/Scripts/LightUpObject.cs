@@ -19,12 +19,10 @@ public class LightUpObject : MonoBehaviour
     public void LightUp()
     {
         this.gameObject.SetActive(false);
-        Debug.Log("LIGHT UP OBJECT");
     }
 
     public void LightDown()
     {
         this.gameObject.SetActive(true);
-        Debug.Log("LIGHT DOWN OBJECT");
     }
 }

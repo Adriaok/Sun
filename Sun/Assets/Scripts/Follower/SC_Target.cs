@@ -21,6 +21,7 @@ public class SC_Target : MonoBehaviour
     {
         CheckIfSelected();
         CheckIfDragging();
+        CheckIfRotating();
 
         UpdateMaterialColor();
     }
@@ -72,6 +73,19 @@ public class SC_Target : MonoBehaviour
             }
        
         
+        }
+    }
+
+    private void CheckIfRotating()
+    {
+        if(isSelected && Input.GetKeyDown(KeyCode.Z))
+        {
+            BroadcastMessage("Rotate_SC_Follower", -10.0f);
+        }
+
+        if (isSelected && Input.GetKeyDown(KeyCode.X))
+        {
+            BroadcastMessage("Rotate_SC_Follower", 10.0f);
         }
     }
 

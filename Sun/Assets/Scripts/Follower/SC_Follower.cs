@@ -42,8 +42,11 @@ public class SC_Follower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        followTarget = GameObject.Find("Player").transform;
-        transform.rotation = followTarget.rotation;
+        if (!isLocked)  //TODO: Consider locked flock too
+        {
+            followTarget = GameObject.Find("Player").transform;
+            transform.rotation = followTarget.rotation;
+        }
     }
 
     public void Init()
@@ -130,6 +133,12 @@ public class SC_Follower : MonoBehaviour
     {
         isLocked = false;
         rb.isKinematic = false;
+    }
+
+    public void Rotate_SC_Follower(float _rotation)
+    {
+        transform.Rotate(new Vector3(0.0f, 0.0f, _rotation));
+        Debug.Log("rotate");
     }
 
     public void UpdateIsSelected_SC_Follower(bool _isSelected)
