@@ -164,6 +164,7 @@ public class FollowerManager : MonoBehaviour
         //Create follower and add it to the dictionary with the id as key
         GameObject newFollower = Instantiate(followerPrefab, new Vector3(Random.Range(-10, 10), 1, 0), Quaternion.identity);
         newFollower.GetComponent<SC_Follower>().Init();
+        newFollower.GetComponent<SC_Follower>().ID = newID;
         followers[newID] = newFollower;
 
         //Add new id to unavailableIds

@@ -19,6 +19,9 @@ public class SC_Follower : MonoBehaviour
     public bool isSelected = false;
     public bool isDragging = false;
 
+    public string ID;
+    public float lightRange = 20.0f;
+
     //Harcoded, should do find
     private float playerSpeed = 7.5f;
 
