@@ -42,7 +42,8 @@ public class SC_Follower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        followTarget = GameObject.Find("Player").transform;
+        transform.rotation = followTarget.rotation;
     }
 
     public void Init()
@@ -50,6 +51,7 @@ public class SC_Follower : MonoBehaviour
         //agent = GetComponent<NavMeshAgent>();
         //transformToFollow = GameObject.Find("Player").transform;
         followTarget = GameObject.Find("Player").transform;
+        transform.rotation = followTarget.rotation;
     }
 
     public void FollowPlayer()
@@ -72,6 +74,8 @@ public class SC_Follower : MonoBehaviour
             Vector3 velocity = rb.velocity + steeringForce * Time.deltaTime;
             velocity = Vector3.ClampMagnitude(velocity, max_velocity);
             rb.velocity = velocity;
+
+            transform.rotation = followTarget.rotation;
             
         }
         

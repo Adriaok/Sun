@@ -42,23 +42,25 @@ public class SC_SpotLight : MonoBehaviour
 
         RaycastHit hit;
         // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, spotLight.range, layerMask))
+        if (Physics.Raycast(GetComponent<Rigidbody>().position, transform.TransformDirection(Vector3.forward), out hit, spotLight.range, layerMask))
         {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.black);
+            Debug.DrawRay(GetComponent<Rigidbody>().position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.black);
 
             if (hit.collider != null)
             {
                 raycastReturn = hit.collider.gameObject.name;
                 foundObject = GameObject.Find(raycastReturn);
-                Destroy(foundObject);
-                Debug.Log("did hit");
+                foundObject.GetComponent<LightUpObject>().LightUp();
             }
-
         }
         else
         {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.black);
-            Debug.Log("Did not Hit");
+            Debug.DrawRay(GetComponent<Rigidbody>().position, transform.TransformDirection(Vector3.forward) * 1000, Color.black);
+
+            if (foundObject != null)
+            {
+                foundObject.GetComponent<LightUpObject>().LightDown();
+            }
         }
     }
 }
