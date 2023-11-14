@@ -11,7 +11,7 @@ using UnityEngine.Experimental.GlobalIllumination;
 public class SC_SpotLight : MonoBehaviour
 {
     private Light spotLight;
-    private GameObject foundObject;
+    private LightUpObject foundObject;
     private string raycastReturn;
 
     // Start is called before the first frame update
@@ -48,9 +48,10 @@ public class SC_SpotLight : MonoBehaviour
 
             if (hit.collider != null)
             {
-                raycastReturn = hit.collider.gameObject.name;
-                foundObject = GameObject.Find(raycastReturn);
-                foundObject.GetComponent<LightUpObject>().LightUp();
+                //raycastReturn = hit.collider.gameObject.name;
+                //foundObject = GameObject.Find(raycastReturn);
+                foundObject = hit.collider.gameObject.GetComponent<LightUpObject>();
+                foundObject.LightUp();
             }
         }
         else
@@ -59,7 +60,7 @@ public class SC_SpotLight : MonoBehaviour
 
             if (foundObject != null)
             {
-                foundObject.GetComponent<LightUpObject>().LightDown();
+                foundObject.LightDown();
             }
         }
     }
