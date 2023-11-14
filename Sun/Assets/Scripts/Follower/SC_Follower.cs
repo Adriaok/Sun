@@ -42,11 +42,15 @@ public class SC_Follower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (!isLocked)  //TODO: Consider locked flock too
         {
             followTarget = GameObject.Find("Player").transform;
             transform.rotation = followTarget.rotation;
         }
+        */
+
+        Debug.Log(transform.rotation.z);
     }
 
     public void Init()
@@ -79,6 +83,7 @@ public class SC_Follower : MonoBehaviour
             rb.velocity = velocity;
 
             transform.rotation = followTarget.rotation;
+            Debug.Log("Follow target");
             
         }
         
@@ -137,8 +142,10 @@ public class SC_Follower : MonoBehaviour
 
     public void Rotate_SC_Follower(float _rotation)
     {
-        transform.Rotate(new Vector3(0.0f, 0.0f, _rotation));
-        Debug.Log("rotate");
+        Quaternion target = Quaternion.Euler(0, _rotation, 0);
+        //transform.Rotate(new Vector3(0.0f, 0.0f, _rotation));
+        transform.Rotate(new Vector3(0.0f, _rotation, 0.0f));
+        Debug.Log("Rotate: " + transform.rotation.y);
     }
 
     public void UpdateIsSelected_SC_Follower(bool _isSelected)
