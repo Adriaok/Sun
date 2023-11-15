@@ -9,26 +9,32 @@ public class SC_Whisp : MonoBehaviour
     private LightUpObject foundObject;
     private string raycastReturn;
     private float timeSinceChange = 0.0f;
+    private bool isLightToggled = false;
 
     // Start is called before the first frame update
     void Start()
     {
         light = GetComponentInParent<Light>();
 
-        GetComponentInParent<Light>().type = UnityEngine.LightType.Spot;
-        GetComponentInParent<Light>().color = Color.red;
-        GetComponentInParent<Light>().intensity = 1.0f;
-        GetComponentInParent<Light>().range = 500.0f;
+        light.type = UnityEngine.LightType.Spot;
+        light.color = Color.red;
+        light.intensity = 1.0f;
+        light.range = 500.0f;
+        light.enabled = false;
     }
 
     private void FixedUpdate()
     {
-        CheckRayCastCollision();
+        if (isLightToggled)
+        {
+            CheckRayCastCollision();
+        }
     }
     // Update is called once per frame
     void Update()
     {
-        FlashLightAtInterval();
+        if(isLightToggled)
+            FlashLightAtInterval();
     }
 
     public void CheckRayCastCollision()
@@ -73,6 +79,12 @@ public class SC_Whisp : MonoBehaviour
             timeSinceChange = 0.0f;
             light.enabled = !light.enabled;
         }
+    }
+
+    public void ToggleLight(bool _state)
+    {
+        isLightToggled = _state;
+        light.enabled = _state;
     }
 
 }

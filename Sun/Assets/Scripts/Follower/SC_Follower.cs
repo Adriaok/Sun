@@ -84,46 +84,6 @@ public class SC_Follower : MonoBehaviour
             Debug.Log("Follow target");
             
         }
-        
-        /*
-        if (followTarget != null)
-        {
-            //Distance between this NPC and the follow target
-            float distance = Vector3.Distance(transform.position, followTarget.position);
-
-            //If too far away from the target
-            if (distance > maxDistance)
-            {
-                //Move in the direction of the target
-                Vector3 direction = (followTarget.position - transform.position).normalized;
-
-                //Smoothly change speed to match player's speed
-                rb.velocity = Vector3.Lerp(
-                    rb.velocity,
-                    direction * playerSpeed,
-                    Time.deltaTime * 6);
-            }
-
-            //If too close to target
-            else if (distance < minDistance)
-            {
-                //Reversed direction is the direction away from the target, to move further away
-                Vector3 reversedDirection = (transform.position - followTarget.position).normalized;
-
-                //Smoothly change speed
-                rb.velocity = Vector3.Lerp(
-                    rb.velocity,
-                    reversedDirection * playerSpeed,
-                    Time.deltaTime * 6);
-            }
-
-            //If at a good distance from target, reduce speed to zero
-            else
-            {
-                rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime * 6);
-            }
-        }
-        */
     }
 
     public void Lock()
@@ -141,9 +101,14 @@ public class SC_Follower : MonoBehaviour
     public void Rotate_SC_Follower(float _rotation)
     {
         Quaternion target = Quaternion.Euler(0, _rotation, 0);
-        //transform.Rotate(new Vector3(0.0f, 0.0f, _rotation));
         transform.Rotate(new Vector3(0.0f, _rotation, 0.0f));
         Debug.Log("Rotate: " + transform.rotation.y);
+    }
+
+    public void ToggleLight_SC_Follower()
+    {
+        GetComponent<Light>().enabled = !GetComponent<Light>().enabled;
+        BroadcastMessage("ToggleLight", GetComponent<Light>().enabled);
     }
 
     public void UpdateIsSelected_SC_Follower(bool _isSelected)

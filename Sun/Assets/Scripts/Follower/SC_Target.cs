@@ -22,6 +22,7 @@ public class SC_Target : MonoBehaviour
         CheckIfSelected();
         CheckIfDragging();
         CheckIfRotating();
+        CheckIfToggleLight();
 
         UpdateMaterialColor();
     }
@@ -87,6 +88,12 @@ public class SC_Target : MonoBehaviour
         {
             BroadcastMessage("Rotate_SC_Follower", 10.0f);
         }
+    }
+
+    private void CheckIfToggleLight()
+    {
+        if (isSelected && Input.GetMouseButtonDown(1))
+            BroadcastMessage("ToggleLight_SC_Follower");
     }
 
     private void UpdateMaterialColor()

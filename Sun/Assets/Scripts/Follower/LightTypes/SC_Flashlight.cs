@@ -10,26 +10,31 @@ public class SC_Flashlight : MonoBehaviour
     private string raycastReturn;
     private bool isConsumed = false;
     private float timeSinceBirth = 0.0f;
+    private bool isLightToggled = false;
 
     // Start is called before the first frame update
     void Start()
     {
         light = GetComponentInParent<Light>();
 
-        GetComponentInParent<Light>().type = UnityEngine.LightType.Spot;
-        GetComponentInParent<Light>().color = Color.blue;
-        GetComponentInParent<Light>().intensity = 0.5f;
-        GetComponentInParent<Light>().range = 1000.0f;
+        light.type = UnityEngine.LightType.Spot;
+        light.color = Color.blue;
+        light.intensity = 0.5f;
+        light.range = 1000.0f;
+        light.enabled = false;
     }
 
     private void FixedUpdate()
     {
-        CheckRayCastCollision();
+        if (isLightToggled)
+        {
+            CheckRayCastCollision();
+        }
     }
     // Update is called once per frame
     void Update()
     {
-        if (!isConsumed)
+        if (!isConsumed && isLightToggled)
         {
             if (CheckIfConsumed())
             {
@@ -79,5 +84,11 @@ public class SC_Flashlight : MonoBehaviour
             return true;
         else
             return false;
+    }
+
+    public void ToggleLight(bool _state)
+    {
+        isLightToggled = _state;
+        light.enabled = _state;
     }
 }

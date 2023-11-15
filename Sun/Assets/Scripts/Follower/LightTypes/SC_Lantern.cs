@@ -8,16 +8,18 @@ public class SC_Lantern : MonoBehaviour
     private Light light;
     private LightUpObject foundObject;
     private string raycastReturn;
+    private bool isLightToggled = false;
 
     // Start is called before the first frame update
     void Start()
     {
         light = GetComponentInParent<Light>();
 
-        GetComponentInParent<Light>().type = UnityEngine.LightType.Point;
-        GetComponentInParent<Light>().color = Color.green;
-        GetComponentInParent<Light>().intensity = 0.5f;
-        GetComponentInParent<Light>().range = 200.0f;
+        light.type = UnityEngine.LightType.Point;
+        light.color = Color.green;
+        light.intensity = 0.5f;
+        light.range = 200.0f;
+        light.enabled = false;
     }
 
     private void FixedUpdate()
@@ -58,5 +60,11 @@ public class SC_Lantern : MonoBehaviour
                 foundObject.LightDown();
             }
         }
+    }
+
+    public void ToggleLight(bool _state)
+    {
+        isLightToggled = _state;
+        light.enabled = _state;
     }
 }
