@@ -166,7 +166,7 @@ public class FollowerManager : MonoBehaviour
 
         //Create follower and add it to the dictionary with the id as key
         
-        followers[newID] = InstantiateFlashlight(newID);
+        followers[newID] = InstantiateLantern(newID);
 
         //Add new id to unavailableIds
         unavailableIDs.Add(newID);
