@@ -19,7 +19,7 @@ public class FollowerManager : MonoBehaviour
     //Test
     float elapsedTime = 0.0f;
     float secondsBetweenSpawn = 2.0f;
-    int maxFollowers = 1;
+    int maxFollowers = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -131,7 +131,7 @@ public class FollowerManager : MonoBehaviour
     {
         foreach (KeyValuePair<string, GameObject> follower in followers)
         {
-            if(!follower.Value.GetComponent<SC_Follower>().isLocked)
+            if(!follower.Value.GetComponent<SC_Follower>().isLocked && follower.Value.GetComponent<SC_Follower>().isInPlayerFaction)
             {
                 follower.Value.GetComponent<SC_Follower>().FollowPlayer();
             }

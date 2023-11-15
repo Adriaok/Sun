@@ -11,7 +11,7 @@ public class SC_Follower : MonoBehaviour
     [SerializeField] private float minDistance = 3.0f;
     [SerializeField] private float maxDistance = 5.0f;
 
-    private bool isInPlayerFaction;
+    public bool isInPlayerFaction = false;
     private Transform followTarget;
     public Rigidbody rb;
 
@@ -96,6 +96,11 @@ public class SC_Follower : MonoBehaviour
     {
         isLocked = false;
         rb.isKinematic = false;
+    }
+
+    public void UpdateIsInPlayerFaction_SC_Follower(bool _value)
+    {
+        isInPlayerFaction = _value;
     }
 
     public void Rotate_SC_Follower(float _rotation)

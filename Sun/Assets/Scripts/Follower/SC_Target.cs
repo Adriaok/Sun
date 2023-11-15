@@ -12,6 +12,8 @@ public class SC_Target : MonoBehaviour
     private float distance;
     private Vector3 startDist;
 
+    public bool isInPlayerFaction = false;
+
     void Start()
     {
         renderer = GetComponentInChildren<MeshRenderer>();
@@ -20,9 +22,17 @@ public class SC_Target : MonoBehaviour
     void Update()
     {
         CheckIfSelected();
-        CheckIfDragging();
-        CheckIfRotating();
-        CheckIfToggleLight();
+
+        if (isInPlayerFaction)
+        {
+            CheckIfDragging();
+            CheckIfRotating();
+            CheckIfToggleLight();
+        }
+        else
+        {
+            CheckIfRecruiting();
+        }
 
         UpdateMaterialColor();
     }
@@ -58,6 +68,15 @@ public class SC_Target : MonoBehaviour
         //BroadcastMessage("UpdateIsSelected_SC_Follower", false);
     }
 
+    private void CheckIfRecruiting()
+    {
+        if(isSelected && Input.GetKeyDown(KeyCode.R))
+        {
+            isInPlayerFaction = true;
+            BroadcastMessage("UpdateIsInPlayerFaction_SC_Follower", true);
+            Debug.Log("Recruit");
+        }
+    }
     private void CheckIfSelected()
     {
         if (isHovered && Input.GetMouseButtonDown(0))
