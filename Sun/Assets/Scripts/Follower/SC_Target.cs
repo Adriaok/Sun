@@ -92,7 +92,7 @@ public class SC_Target : MonoBehaviour
 
     private void CheckIfToggleLight()
     {
-        if (isSelected && Input.GetMouseButtonDown(1))
+        if (isSelected && Input.GetKeyDown(KeyCode.L))
             BroadcastMessage("ToggleLight_SC_Follower");
     }
 
