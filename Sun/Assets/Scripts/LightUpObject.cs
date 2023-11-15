@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LightUpObject : MonoBehaviour
 {
+    public GameObject shadow;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,11 +20,11 @@ public class LightUpObject : MonoBehaviour
 
     public void LightUp()
     {
-        this.gameObject.SetActive(false);
+        shadow.SetActive(false);
     }
 
     public void LightDown()
     {
-        this.gameObject.SetActive(true);
+        shadow.SetActive(true);
     }
 }
