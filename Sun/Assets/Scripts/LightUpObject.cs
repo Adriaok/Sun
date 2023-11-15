@@ -21,10 +21,12 @@ public class LightUpObject : MonoBehaviour
     public void LightUp()
     {
         shadow.SetActive(false);
+        //GetComponent<Collider>().enabled = false;
     }
 
     public void LightDown()
     {
         shadow.SetActive(true);
+        //GetComponent<Collider>().enabled = true;
     }
 }

@@ -49,8 +49,6 @@ public class SC_Follower : MonoBehaviour
             transform.rotation = followTarget.rotation;
         }
         */
-
-        Debug.Log(transform.rotation.z);
     }
 
     public void Init()

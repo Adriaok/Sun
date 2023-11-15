@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -153,6 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followerPrefab: {fileID: 3869070898252409726, guid: e328cfb1ed9ef594f8299dcb63fa98d2, type: 3}
+  whispPrefab: {fileID: 3869070898252409726, guid: 99d87ea005399bf44b19c913e828bd09, type: 3}
+  lanternPrefab: {fileID: 0}
 --- !u!4 &6110453
 Transform:
   m_ObjectHideFlags: 0

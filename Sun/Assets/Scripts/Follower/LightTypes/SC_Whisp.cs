@@ -8,6 +8,7 @@ public class SC_Whisp : MonoBehaviour
     private Light light;
     private LightUpObject foundObject;
     private string raycastReturn;
+    private float timeSinceChange = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,8 @@ public class SC_Whisp : MonoBehaviour
         GetComponentInParent<Light>().color = Color.red;
         GetComponentInParent<Light>().intensity = 1.0f;
         GetComponentInParent<Light>().range = 500.0f;
+
+        //FlashLightAtIntervalCR();
     }
 
     private void FixedUpdate()
@@ -27,6 +30,7 @@ public class SC_Whisp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        FlashLightAtInterval();
     }
 
     public void CheckRayCastCollision()
@@ -46,7 +50,10 @@ public class SC_Whisp : MonoBehaviour
                 //raycastReturn = hit.collider.gameObject.name;
                 //foundObject = GameObject.Find(raycastReturn);
                 foundObject = hit.collider.gameObject.GetComponent<LightUpObject>();
-                foundObject.LightUp();
+                if (light.enabled)
+                    foundObject.LightUp();
+                else
+                    foundObject.LightDown();
             }
         }
         else
@@ -59,4 +66,15 @@ public class SC_Whisp : MonoBehaviour
             }
         }
     }
+
+    public void FlashLightAtInterval()
+    {
+        timeSinceChange += Time.deltaTime;
+        if (timeSinceChange > 1.0f)
+        {
+            timeSinceChange = 0.0f;
+            light.enabled = !light.enabled;
+        }
+    }
+
 }
