@@ -155,6 +155,7 @@ MonoBehaviour:
   followerPrefab: {fileID: 3869070898252409726, guid: e328cfb1ed9ef594f8299dcb63fa98d2, type: 3}
   whispPrefab: {fileID: 3869070898252409726, guid: 99d87ea005399bf44b19c913e828bd09, type: 3}
   lanternPrefab: {fileID: 0}
+  flashlightPrefab: {fileID: 3869070898252409726, guid: c989d0f16720f9146a7ecc52106f4d0d, type: 3}
 --- !u!4 &6110453
 Transform:
   m_ObjectHideFlags: 0

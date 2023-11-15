@@ -8,6 +8,8 @@ public class SC_Flashlight : MonoBehaviour
     private Light light;
     private LightUpObject foundObject;
     private string raycastReturn;
+    private bool isConsumed = false;
+    private float timeSinceBirth = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,15 @@ public class SC_Flashlight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isConsumed)
+        {
+            if (CheckIfConsumed())
+            {
+                light.enabled = false;
+                isConsumed = true;
+                Debug.Log("is consumed");
+            }
+        }
     }
 
     public void CheckRayCastCollision()
@@ -58,5 +69,15 @@ public class SC_Flashlight : MonoBehaviour
                 foundObject.LightDown();
             }
         }
+    }
+
+    private bool CheckIfConsumed()
+    {
+        timeSinceBirth += Time.deltaTime;
+
+        if (timeSinceBirth > 60.0f)
+            return true;
+        else
+            return false;
     }
 }

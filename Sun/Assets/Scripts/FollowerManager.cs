@@ -7,6 +7,7 @@ public class FollowerManager : MonoBehaviour
     public GameObject followerPrefab;
     public GameObject whispPrefab;
     public GameObject lanternPrefab;
+    public GameObject flashlightPrefab;
     
     public Dictionary<string, GameObject> followers = new Dictionary<string, GameObject>();
     private List<string> unavailableIDs = new List<string>();
@@ -165,7 +166,7 @@ public class FollowerManager : MonoBehaviour
 
         //Create follower and add it to the dictionary with the id as key
         
-        followers[newID] = InstantiateWhisp(newID);
+        followers[newID] = InstantiateFlashlight(newID);
 
         //Add new id to unavailableIds
         unavailableIDs.Add(newID);
@@ -184,6 +185,15 @@ public class FollowerManager : MonoBehaviour
     private GameObject InstantiateLantern(string newID)
     {
         GameObject newFollower = Instantiate(lanternPrefab, new Vector3(Random.Range(-10, 10), 1, 0), Quaternion.identity);
+        newFollower.GetComponent<SC_Follower>().Init();
+        newFollower.GetComponent<SC_Follower>().ID = newID;
+
+        return newFollower;
+    }
+
+    private GameObject InstantiateFlashlight(string newID)
+    {
+        GameObject newFollower = Instantiate(flashlightPrefab, new Vector3(Random.Range(-10, 10), 1, 0), Quaternion.identity);
         newFollower.GetComponent<SC_Follower>().Init();
         newFollower.GetComponent<SC_Follower>().ID = newID;
 

@@ -19,8 +19,6 @@ public class SC_Whisp : MonoBehaviour
         GetComponentInParent<Light>().color = Color.red;
         GetComponentInParent<Light>().intensity = 1.0f;
         GetComponentInParent<Light>().range = 500.0f;
-
-        //FlashLightAtIntervalCR();
     }
 
     private void FixedUpdate()
