@@ -162,13 +162,26 @@ public class FollowerManager : MonoBehaviour
         } while (!validID);
 
         //Create follower and add it to the dictionary with the id as key
-        GameObject newFollower = Instantiate(followerPrefab, new Vector3(Random.Range(-10, 10), 1, 0), Quaternion.identity);
-        newFollower.GetComponent<SC_Follower>().Init();
-        newFollower.GetComponent<SC_Follower>().ID = newID;
+        
         followers[newID] = newFollower;
 
         //Add new id to unavailableIds
         unavailableIDs.Add(newID);
+    }
+
+    private GameObject InstantiateWhisp(string newID)
+    {
+        GameObject newFollower = Instantiate(followerPrefab, new Vector3(Random.Range(-10, 10), 1, 0), Quaternion.identity);
+        newFollower.GetComponent<SC_Follower>().Init();
+        newFollower.GetComponent<SC_Follower>().ID = newID;
+
+        return newFollower;
+
+    }
+
+    private GameObject InstantiateLantern(string newID)
+    {
+
     }
 
     string GenerateID(int charAmount)
