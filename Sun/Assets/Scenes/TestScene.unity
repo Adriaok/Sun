@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6110453}
   - component: {fileID: 6110452}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FollowerManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,7 +292,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &424468984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -796,7 +796,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &779845631
 Transform:
   m_ObjectHideFlags: 0
@@ -2309,7 +2309,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3479591753694883114, guid: 438ce64c0c497fa4e9f80dbf107d80fd, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: Player_General
       objectReference: {fileID: 0}
     - target: {fileID: 4697551156477785825, guid: 438ce64c0c497fa4e9f80dbf107d80fd, type: 3}
       propertyPath: m_LocalRotation.y
