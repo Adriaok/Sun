@@ -54,7 +54,7 @@ public class SC_Follower : MonoBehaviour
     public void Init()
     {
         //transformToFollow = GameObject.Find("Player").transform;
-        followTarget = GameObject.Find("Player_General").transform;
+        followTarget = GameObject.Find("Player").transform;
         transform.rotation = followTarget.rotation;
     }
 
