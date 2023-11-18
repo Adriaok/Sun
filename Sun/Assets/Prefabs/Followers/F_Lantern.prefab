@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -779907520205084696}
   - component: {fileID: 6787557629616507837}
   - component: {fileID: -6516635224717810482}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: F_Lantern
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,6 +75,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minDistance: 3
   maxDistance: 5
+  isInPlayerFaction: 0
   rb: {fileID: 0}
   isLocked: 0
   isSelected: 0
@@ -94,6 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSelected: 0
+  isInPlayerFaction: 0
 --- !u!114 &1456570222172770014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,7 +232,7 @@ GameObject:
   - component: {fileID: 8409982219548641650}
   - component: {fileID: 353222008269731791}
   - component: {fileID: 2017548425124658328}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}

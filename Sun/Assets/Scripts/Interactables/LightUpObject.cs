@@ -6,11 +6,13 @@ public class LightUpObject : MonoBehaviour
 {
     public GameObject shadow;
     private Collider playerCollider;
+    private Collider collider;
 
     // Start is called before the first frame update
     void Start()
     {
         playerCollider = GameObject.Find("Player").GetComponent<Collider>();
+        collider = GetComponent<Collider>();
     }
 
     // Update is called once per frame
@@ -23,15 +25,17 @@ public class LightUpObject : MonoBehaviour
     {
         shadow.SetActive(false);
         //GetComponent<Collider>().enabled = false;
-        Physics.IgnoreCollision(GetComponent<Collider>(), playerCollider, true);
-        Physics.IgnoreLayerCollision(7, 8, true);
+        Physics.IgnoreCollision(collider, playerCollider, true);
+        //Physics.IgnoreLayerCollision(0, 7);     //Doesn't worK
+        Physics.IgnoreLayerCollision(6, 7);     //Doesn't worK
     }
 
     public void LightDown()
     {
         shadow.SetActive(true);
         //GetComponent<Collider>().enabled = true;
-        Physics.IgnoreCollision(GetComponent<Collider>(), playerCollider, false);
-        Physics.IgnoreLayerCollision(7, 8, false);
+        Physics.IgnoreCollision(collider, playerCollider, false);
+        //Physics.IgnoreLayerCollision(0, 7, false);
+        Physics.IgnoreLayerCollision(6, 7, false);
     }
 }

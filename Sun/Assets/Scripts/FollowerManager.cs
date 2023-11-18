@@ -177,6 +177,7 @@ public class FollowerManager : MonoBehaviour
         GameObject newFollower = Instantiate(whispPrefab, new Vector3(Random.Range(-10, 10), 1, 0), Quaternion.identity);
         newFollower.GetComponent<SC_Follower>().Init();
         newFollower.GetComponent<SC_Follower>().ID = newID;
+        newFollower.layer = 7;
 
         return newFollower;
 
@@ -187,6 +188,7 @@ public class FollowerManager : MonoBehaviour
         GameObject newFollower = Instantiate(lanternPrefab, new Vector3(Random.Range(-10, 10), 1, 0), Quaternion.identity);
         newFollower.GetComponent<SC_Follower>().Init();
         newFollower.GetComponent<SC_Follower>().ID = newID;
+        newFollower.layer = 7;
 
         return newFollower;
     }
@@ -196,6 +198,7 @@ public class FollowerManager : MonoBehaviour
         GameObject newFollower = Instantiate(flashlightPrefab, new Vector3(Random.Range(-10, 10), 1, 0), Quaternion.identity);
         newFollower.GetComponent<SC_Follower>().Init();
         newFollower.GetComponent<SC_Follower>().ID = newID;
+        newFollower.layer = 7;
 
         return newFollower;
     }
