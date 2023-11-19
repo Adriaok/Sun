@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class SC_Button : MonoBehaviour
 {
@@ -17,9 +18,10 @@ public class SC_Button : MonoBehaviour
         }
     }
 
+    /*
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "/Player/Player/Capsule")
+        if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
             Debug.Log("collided");
             if (monumentClicked != null)
@@ -27,5 +29,10 @@ public class SC_Button : MonoBehaviour
                 monumentClicked();
             }
         }
-    }
+
+
+        if (collision.gameObject.name == "/Player/Player/Capsule")
+        {
+        }
+    }*/
 }
