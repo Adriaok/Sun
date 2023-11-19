@@ -36,7 +36,7 @@ public class SC_Follower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Init();
+        //Init();
     }
 
     // Update is called once per frame
@@ -51,17 +51,21 @@ public class SC_Follower : MonoBehaviour
         */
     }
 
-    public void Init()
+    public void Init(Transform _playerTransform)
     {
         //transformToFollow = GameObject.Find("Player").transform;
-        followTarget = GameObject.Find("Player").transform;
+        //followTarget = GameObject.Find("Player").transform;
+        GetComponent<SC_Navigation>().player = _playerTransform;
+        followTarget = _playerTransform;
         transform.rotation = followTarget.rotation;
     }
 
     public void FollowPlayer()
     {
+        
         if(followTarget != null)
         {
+            /*
             //Calculate desired velocity
             Vector3 desiredVelocity = (followTarget.position - transform.position).normalized;
             desiredVelocity *= max_velocity;
@@ -78,9 +82,10 @@ public class SC_Follower : MonoBehaviour
             Vector3 velocity = rb.velocity + steeringForce * Time.deltaTime;
             velocity = Vector3.ClampMagnitude(velocity, max_velocity);
             rb.velocity = velocity;
-
+            */
             transform.rotation = followTarget.rotation;
-            Debug.Log("Follow target");
+            //Debug.Log("Follow target");
+            
             
         }
     }

@@ -8,6 +8,8 @@ public class FollowerManager : MonoBehaviour
     public GameObject whispPrefab;
     public GameObject lanternPrefab;
     public GameObject flashlightPrefab;
+
+    public Transform playerTransform;
     
     public Dictionary<string, GameObject> followers = new Dictionary<string, GameObject>();
     private List<string> unavailableIDs = new List<string>();
@@ -175,7 +177,7 @@ public class FollowerManager : MonoBehaviour
     private GameObject InstantiateWhisp(string newID)
     {
         GameObject newFollower = Instantiate(whispPrefab, new Vector3(Random.Range(-10, 10), 1, 0), Quaternion.identity);
-        newFollower.GetComponent<SC_Follower>().Init();
+        newFollower.GetComponent<SC_Follower>().Init(playerTransform);
         newFollower.GetComponent<SC_Follower>().ID = newID;
         newFollower.layer = 7;
 
@@ -186,7 +188,7 @@ public class FollowerManager : MonoBehaviour
     private GameObject InstantiateLantern(string newID)
     {
         GameObject newFollower = Instantiate(lanternPrefab, new Vector3(Random.Range(-10, 10), 1, 0), Quaternion.identity);
-        newFollower.GetComponent<SC_Follower>().Init();
+        newFollower.GetComponent<SC_Follower>().Init(playerTransform);
         newFollower.GetComponent<SC_Follower>().ID = newID;
         newFollower.layer = 7;
 
@@ -196,7 +198,7 @@ public class FollowerManager : MonoBehaviour
     private GameObject InstantiateFlashlight(string newID)
     {
         GameObject newFollower = Instantiate(flashlightPrefab, new Vector3(Random.Range(-10, 10), 1, 0), Quaternion.identity);
-        newFollower.GetComponent<SC_Follower>().Init();
+        newFollower.GetComponent<SC_Follower>().Init(playerTransform);
         newFollower.GetComponent<SC_Follower>().ID = newID;
         newFollower.layer = 7;
 
