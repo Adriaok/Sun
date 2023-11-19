@@ -4,11 +4,21 @@ using UnityEngine;
 
 public class SC_Door : MonoBehaviour
 {
-    GameObject physicalDoor;
-    // Start is called before the first frame update
+    [SerializeField] private GameObject physicalDoor;
+
+    private void OnEnable()
+    {
+        SC_Button.monumentClicked += Open;
+    }
+
+    private void OnDisable()
+    {
+        SC_Button.monumentClicked -= Open;
+    }
+
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -20,6 +30,7 @@ public class SC_Door : MonoBehaviour
     public void Open()
     {
         physicalDoor.SetActive(false);
+        Debug.Log("whaaa");
     }
 
     public void Close()
