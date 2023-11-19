@@ -75,6 +75,8 @@ public class SC_Target : MonoBehaviour
             isInPlayerFaction = true;
             BroadcastMessage("UpdateIsInPlayerFaction_SC_Follower", true);
             Debug.Log("Recruit");
+            isSelected = false;
+            BroadcastMessage("UpdateIsSelected_SC_Follower", false);
         }
     }
     private void CheckIfSelected()
@@ -112,7 +114,11 @@ public class SC_Target : MonoBehaviour
     private void CheckIfToggleLight()
     {
         if (isSelected && Input.GetKeyDown(KeyCode.L))
+        {
             BroadcastMessage("ToggleLight_SC_Follower");
+            isSelected = false;
+            BroadcastMessage("UpdateIsSelected_SC_Follower", false);
+        }
     }
 
     private void UpdateMaterialColor()
