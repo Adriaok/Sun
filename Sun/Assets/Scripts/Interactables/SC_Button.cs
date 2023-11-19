@@ -3,8 +3,6 @@ using System.Collections;
 
 public class SC_Button : MonoBehaviour
 {
-    public GameObject door;
-
     public delegate void MonumentActions();
     public static event MonumentActions monumentClicked;
 
@@ -29,15 +27,5 @@ public class SC_Button : MonoBehaviour
                 monumentClicked();
             }
         }
-    }
-
-    public void OpenDoor()
-    {
-        door.GetComponent<SC_Door>().Open();
-    }
-
-    public void CloseDoor()
-    {
-        door.GetComponent<SC_Door>().Close();
     }
 }
