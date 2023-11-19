@@ -13,6 +13,7 @@ public class SC_Follower : MonoBehaviour
 
     public bool isInPlayerFaction = false;
     private Transform followTarget;
+    private NavMeshAgent navMeshAgent;
     public Rigidbody rb;
 
     public bool isLocked = false;
@@ -36,7 +37,7 @@ public class SC_Follower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Init();
+        //Init();
     }
 
     // Update is called once per frame
@@ -51,17 +52,20 @@ public class SC_Follower : MonoBehaviour
         */
     }
 
-    public void Init()
+    public void Init(Transform _followTarget)
     {
         //transformToFollow = GameObject.Find("Player").transform;
-        followTarget = GameObject.Find("Player").transform;
+        //followTarget = GameObject.Find("Player").transform;
+        followTarget = _followTarget;
+        navMeshAgent = GetComponent<NavMeshAgent>();
         transform.rotation = followTarget.rotation;
     }
 
     public void FollowPlayer()
     {
-        if(followTarget != null)
-        {
+        //if(followTarget != null)
+        //{
+            /*
             //Calculate desired velocity
             Vector3 desiredVelocity = (followTarget.position - transform.position).normalized;
             desiredVelocity *= max_velocity;
@@ -78,11 +82,12 @@ public class SC_Follower : MonoBehaviour
             Vector3 velocity = rb.velocity + steeringForce * Time.deltaTime;
             velocity = Vector3.ClampMagnitude(velocity, max_velocity);
             rb.velocity = velocity;
-
+            */
+            navMeshAgent.destination = followTarget.position;
             transform.rotation = followTarget.rotation;
             Debug.Log("Follow target");
             
-        }
+        //}
     }
 
     public void Lock()
