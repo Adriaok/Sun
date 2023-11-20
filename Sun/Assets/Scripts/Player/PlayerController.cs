@@ -1,54 +1,32 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 7.5f;
-    public float jumpSpeed = 8.0f;
-    public float gravity = 20.0f;
-    //[SerializeField] public Camera playerCamera;
-    //public float lookSpeed = 2.0f;
-    //public float lookXLimit = 45.0f;
+    [SerializeField] private CinemachineVirtualCamera _virtualCamera;
+    [SerializeField] private float speed = .5f;
 
-    CharacterController characterController;
-    Vector3 moveDirection = Vector3.zero;
-    Vector2 rotation = Vector2.zero;
-
-    [HideInInspector]
-    public bool canMove = true;
-
-    void Start()
+    void FixedUpdate()
     {
-        characterController = GetComponent<CharacterController>();
-        rotation.y = transform.eulerAngles.y;
-    }
+        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxis("Horizontal");
 
-    void Update()
-    {
-        if (characterController.isGrounded)
-        {
-            // We are grounded, so recalculate move direction based on axes
-            Vector3 forward = transform.TransformDirection(Vector3.forward);
-            Vector3 right = transform.TransformDirection(Vector3.right);
-            float curSpeedX = speed * Input.GetAxis("Vertical");
-            float curSpeedY = speed * Input.GetAxis("Horizontal");
-            moveDirection = (forward * curSpeedX) + (right * curSpeedY);
+        Vector3 forward = _virtualCamera.transform.forward;
+        Vector3 right = _virtualCamera.transform.right;
+        forward.y = 0;
+        right.y = 0;
+        forward = forward.normalized;
+        right = right.normalized;
 
-            if (Input.GetButton("Jump"))
-            {
-                moveDirection.y = jumpSpeed;
-            }
-        }
+        Vector3 relativeForward = forward * verticalInput;
+        Vector3 relativeRight = right * horizontalInput;
 
-        // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
-        // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
-        // as an acceleration (ms^-2)
-        moveDirection.y -= gravity * Time.deltaTime;
-
-        // Move the controller
-        characterController.Move(moveDirection * Time.deltaTime);
+        Vector3 relativeMovement = (relativeForward + relativeRight) * speed;
+        transform.Translate(relativeMovement, Space.World);
     }
 }
