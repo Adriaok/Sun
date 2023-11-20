@@ -46,7 +46,11 @@ public class SC_Follower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isThrowing)
+    }
+
+    private void FixedUpdate()
+    {
+        if (isThrowing)
         {
             BeThrown();
         }
@@ -89,10 +93,28 @@ public class SC_Follower : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             var mousePos = Input.mousePosition;
-            //mousePos.z = 0.1f;
+            Debug.Log(mousePos);
+            mousePos.z = 0.1f;
             Camera camera = GameObject.FindAnyObjectByType<Camera>();
             Vector3 screenPos = camera.ScreenToWorldPoint(mousePos);
-            GetComponent<Rigidbody>().velocity = new Vector3(screenPos.x, screenPos.y, screenPos.z) * 0.5f;
+            //Debug.Log(screenPos);
+            rb.AddRelativeForce(new Vector3(
+                screenPos.x * 100f,
+                10000f,
+                screenPos.z * 100f
+                ));
+
+            //rb.AddForce(screenPos * 100f);
+            //GetComponent<Rigidbody>().velocity = new Vector3(screenPos.x, screenPos.y, screenPos.z);
+            //GetComponent<Rigidbody>().velocity = (screenPos - camera.transform.position) * 0.5f;
+             
+            /*
+            Camera camera = GameObject.FindAnyObjectByType<Camera>();
+            Ray r = camera.ScreenPointToRay(Input.mousePosition);
+            Vector3 dir = r.GetPoint(1) - r.GetPoint(0);
+            transform.rotation = Quaternion.LookRotation(dir);
+            rb.velocity = transform.forward * 20;
+            */
 
             isThrowing = false;
             isSelected = false;
