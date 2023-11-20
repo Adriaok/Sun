@@ -6,6 +6,7 @@ public class SC_Button : MonoBehaviour
 {
     public delegate void MonumentActions();
     public static event MonumentActions monumentClicked;
+    public static event MonumentActions monumentDisabled;
 
     [SerializeField] private PlayerController player;
 
@@ -40,5 +41,11 @@ public class SC_Button : MonoBehaviour
     {
         if (monumentClicked != null)
             monumentClicked();
+    }
+
+    private void OnTriggerExit()
+    {
+        if (monumentDisabled != null)
+            monumentDisabled();
     }
 }

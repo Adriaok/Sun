@@ -9,6 +9,7 @@ public class SC_Door : MonoBehaviour
     private void OnEnable()
     {
         SC_Button.monumentClicked += Open;
+        SC_Button.monumentDisabled += Close;
     }
 
     private void OnDisable()
