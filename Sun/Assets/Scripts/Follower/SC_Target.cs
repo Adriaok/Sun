@@ -117,6 +117,8 @@ public class SC_Target : MonoBehaviour
         if(isSelected && Input.GetKeyDown(KeyCode.M))
         {
             BroadcastMessage("LockRotation_SC_Follower");
+            isSelected = false;
+            BroadcastMessage("UpdateIsSelected_SC_Follower", false);
         }
     }
 
