@@ -58,7 +58,7 @@ public class SC_Follower : MonoBehaviour
         //followTarget = GameObject.Find("Player").transform;
         followTarget = _followTarget;
         navMeshAgent = GetComponent<NavMeshAgent>();
-        transform.rotation = followTarget.rotation;
+        //transform.rotation = followTarget.rotation;
     }
 
     public void FollowPlayer()
