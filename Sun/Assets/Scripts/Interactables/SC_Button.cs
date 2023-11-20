@@ -34,5 +34,11 @@ public class SC_Button : MonoBehaviour
         if (collision.gameObject.name == "/Player/Player/Capsule")
         {
         }
-    }*/
+    }
+    */
+    private void OnTriggerEnter()
+    {
+        if (monumentClicked != null)
+            monumentClicked();
+    }
 }
