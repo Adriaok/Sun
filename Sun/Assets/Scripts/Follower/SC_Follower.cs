@@ -16,6 +16,7 @@ public class SC_Follower : MonoBehaviour
     private Transform cameraTransform;
     private NavMeshAgent navMeshAgent;
     public Rigidbody rb;
+    float angularSpeedBeforeLock; 
 
     public bool isLocked = false;
     public bool isSelected = false;
@@ -66,40 +67,28 @@ public class SC_Follower : MonoBehaviour
 
     public void FollowPlayer()
     {
-        //if(followTarget != null)
-        //{
-            /*
-            //Calculate desired velocity
-            Vector3 desiredVelocity = (followTarget.position - transform.position).normalized;
-            desiredVelocity *= max_velocity;
+        navMeshAgent.destination = followTarget.position;
 
-            //Steering force, without acceleration
-            Vector3 steeringForce = (desiredVelocity - rb.velocity);
-            steeringForce /= max_velocity;
-            steeringForce *= max_force;
+        if (!isRotationLocked)
+        {
+            if (navMeshAgent.angularSpeed == 0)
+                navMeshAgent.angularSpeed = angularSpeedBeforeLock;
 
-            //Steering force, with acceleration
-            steeringForce = steeringForce / rb.mass;
+            transform.Rotate(new Vector3(
+                0.0f, 
+                cameraTransform.rotation.y - transform.rotation.y, 
+                0.0f)
+            );
 
-            //Calculate rb's velocity
-            Vector3 velocity = rb.velocity + steeringForce * Time.deltaTime;
-            velocity = Vector3.ClampMagnitude(velocity, max_velocity);
-            rb.velocity = velocity;
-            */
-            navMeshAgent.destination = followTarget.position;
+            angularSpeedBeforeLock = navMeshAgent.angularSpeed;
+        }
+        else
+        {
+            navMeshAgent.angularSpeed = 0;
+        }
 
-            if (!isRotationLocked)
-            {
-                transform.Rotate(new Vector3(
-                    0.0f, 
-                    cameraTransform.rotation.y - transform.rotation.y, 
-                    0.0f)
-                );
-            }
-
-            Debug.Log("Follow target");
+        Debug.Log("Follow target");
             
-        //}
     }
 
     public void Lock()
@@ -129,6 +118,7 @@ public class SC_Follower : MonoBehaviour
     public void LockRotation_SC_Follower()
     {
         isRotationLocked = !isRotationLocked;
+        Debug.Log("Rotation locked = " + isRotationLocked);
     }
 
     public void ToggleLight_SC_Follower()
