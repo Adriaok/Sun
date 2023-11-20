@@ -31,7 +31,6 @@ public class SC_Door : MonoBehaviour
     public void Open()
     {
         physicalDoor.SetActive(false);
-        Debug.Log("whaaa");
     }
 
     public void Close()
