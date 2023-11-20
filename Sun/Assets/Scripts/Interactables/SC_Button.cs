@@ -10,7 +10,7 @@ public class SC_Button : MonoBehaviour
 
     private void Start()
     {
-        door = GetComponentInChildren<SC_Door>();
+        //door = GetComponentInChildren<SC_Door>();
     }
 
     private void OnTriggerEnter()
