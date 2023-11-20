@@ -9,7 +9,10 @@ public class FollowerManager : MonoBehaviour
     public GameObject lanternPrefab;
     public GameObject flashlightPrefab;
     public Transform playerTransform;
-    
+
+    [SerializeField]
+    public List<GameObject> rawFollowers = new List<GameObject>();
+
     public Dictionary<string, GameObject> followers = new Dictionary<string, GameObject>();
     private List<string> unavailableIDs = new List<string>();
 
@@ -25,7 +28,7 @@ public class FollowerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        IdentifyFollowers();
     }
 
     // Update is called once per frame
@@ -37,7 +40,7 @@ public class FollowerManager : MonoBehaviour
         CheckActionsOnFollowers();
         
         //Test
-       
+        /*
         elapsedTime += Time.deltaTime;
 
         if (elapsedTime > secondsBetweenSpawn && followers.Count < maxFollowers)
@@ -45,6 +48,7 @@ public class FollowerManager : MonoBehaviour
             elapsedTime = 0.0f;
             AddFollower();
         }
+        */
         
     }
 
@@ -138,6 +142,45 @@ public class FollowerManager : MonoBehaviour
             {
                 follower.Value.GetComponent<SC_Follower>().FollowPlayer();
             }
+        }
+    }
+
+    private void IdentifyFollowers()
+    {
+        for(int i = 0; i < rawFollowers.Count; i++)
+        {
+            //Generate random id & check if id is not in unavailableIds
+            bool validID = false;
+            string newID;
+
+            do
+            {
+                newID = GenerateID(10);
+
+                if (unavailableIDs.Count == 0)
+                    validID = true;
+
+                foreach (string id in unavailableIDs)
+                {
+                    if (newID == id)
+                    {
+                        validID = false;
+                        break;
+                    }
+                    else
+                        validID = true;
+                }
+
+            } while (!validID);
+
+            //Add follower to the dictionary with the new id as key
+            followers[newID] = rawFollowers[i];
+            followers[newID].GetComponent<SC_Follower>().Init(playerTransform);
+            followers[newID].GetComponent<SC_Follower>().ID = newID;
+            followers[newID].layer = 7;
+
+            //Add new id to unavailableIds
+            unavailableIDs.Add(newID);
         }
     }
 
