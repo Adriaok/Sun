@@ -90,7 +90,11 @@ public class SC_Follower : MonoBehaviour
 
             if (!isRotationLocked)
             {
-            transform.Rotate(new Vector3(0.0f, cameraTransform.rotation.y, 0.0f));
+                transform.Rotate(new Vector3(
+                    0.0f, 
+                    cameraTransform.rotation.y - transform.rotation.y, 
+                    0.0f)
+                );
             }
 
             Debug.Log("Follow target");
