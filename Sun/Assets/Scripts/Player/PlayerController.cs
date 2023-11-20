@@ -8,8 +8,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
+    CharacterController controller;
+
     [SerializeField] private CinemachineVirtualCamera _virtualCamera;
     [SerializeField] private float speed = .5f;
+    [SerializeField] private float gravity = 20.5f;
+
+    private void Start()
+    {
+        controller = GetComponent<CharacterController>();
+    }
 
     void FixedUpdate()
     {
@@ -27,6 +36,7 @@ public class PlayerController : MonoBehaviour
         Vector3 relativeRight = right * horizontalInput;
 
         Vector3 relativeMovement = (relativeForward + relativeRight) * speed;
-        transform.Translate(relativeMovement, Space.World);
+        relativeMovement.y -= gravity;
+        controller.Move(relativeMovement);
     }
 }
