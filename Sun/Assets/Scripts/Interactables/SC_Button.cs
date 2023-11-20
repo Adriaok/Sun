@@ -4,8 +4,6 @@ using Unity.VisualScripting;
 
 public class SC_Button : MonoBehaviour
 {
-    [SerializeField] private PlayerController player;
-
     [SerializeField] private SC_Door door;
 
     private void Start()
