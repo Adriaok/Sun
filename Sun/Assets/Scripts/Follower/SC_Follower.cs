@@ -93,11 +93,11 @@ public class SC_Follower : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             var mousePos = Input.mousePosition;
-            Debug.Log(mousePos);
+            //Debug.Log(mousePos);
             mousePos.z = 0.1f;
             Camera camera = GameObject.FindAnyObjectByType<Camera>();
             Vector3 screenPos = camera.ScreenToWorldPoint(mousePos);
-            //Debug.Log(screenPos);
+            Debug.Log(screenPos);
             rb.AddRelativeForce(new Vector3(
                 screenPos.x * 100f,
                 10000f,
