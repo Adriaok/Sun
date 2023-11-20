@@ -27,6 +27,7 @@ public class SC_Target : MonoBehaviour
         {
             CheckIfDragging();
             CheckIfRotating();
+            CheckIfRotationLock();
             CheckIfToggleLight();
         }
         else
@@ -108,6 +109,14 @@ public class SC_Target : MonoBehaviour
         if (isSelected && Input.GetKeyDown(KeyCode.X))
         {
             BroadcastMessage("Rotate_SC_Follower", 10.0f);
+        }
+    }
+
+    private void CheckIfRotationLock()
+    {
+        if(isSelected && Input.GetKeyDown(KeyCode.M))
+        {
+            BroadcastMessage("LockRotation_SC_Follower");
         }
     }
 

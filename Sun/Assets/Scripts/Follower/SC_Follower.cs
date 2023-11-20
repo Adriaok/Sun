@@ -19,6 +19,7 @@ public class SC_Follower : MonoBehaviour
     public bool isLocked = false;
     public bool isSelected = false;
     public bool isDragging = false;
+    private bool isRotationLocked = false;
 
     public string ID;
     public float lightRange = 20.0f;
@@ -84,7 +85,12 @@ public class SC_Follower : MonoBehaviour
             rb.velocity = velocity;
             */
             navMeshAgent.destination = followTarget.position;
-            transform.rotation = followTarget.rotation;
+
+            if (!isRotationLocked)
+            {
+                transform.rotation = followTarget.rotation;
+            }
+
             Debug.Log("Follow target");
             
         //}
@@ -112,6 +118,11 @@ public class SC_Follower : MonoBehaviour
         Quaternion target = Quaternion.Euler(0, _rotation, 0);
         transform.Rotate(new Vector3(0.0f, _rotation, 0.0f));
         Debug.Log("Rotate: " + transform.rotation.y);
+    }
+
+    public void LockRotation_SC_Follower()
+    {
+        isRotationLocked = !isRotationLocked;
     }
 
     public void ToggleLight_SC_Follower()
