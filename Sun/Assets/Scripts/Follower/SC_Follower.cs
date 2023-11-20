@@ -21,6 +21,7 @@ public class SC_Follower : MonoBehaviour
     public bool isSelected = false;
     public bool isDragging = false;
     private bool isRotationLocked = false;
+    private bool isThrowing = false;
 
     public string ID;
     public float lightRange = 20.0f;
@@ -45,13 +46,10 @@ public class SC_Follower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (!isLocked)  //TODO: Consider locked flock too
+        if(isThrowing)
         {
-            followTarget = GameObject.Find("Player").transform;
-            transform.rotation = followTarget.rotation;
+            BeThrown();
         }
-        */
     }
 
     public void Init(Transform _followTarget, Transform _cameraTransform)
@@ -83,6 +81,23 @@ public class SC_Follower : MonoBehaviour
 
         Debug.Log("Follow target");
             
+    }
+
+    private void BeThrown()
+    {
+        //With the left click...
+        if(Input.GetMouseButtonDown(0))
+        {
+            var mousePos = Input.mousePosition;
+            mousePos.z = 0.1f;
+            Camera camera = GameObject.FindAnyObjectByType<Camera>();
+            Vector3 screenPos = camera.ScreenToWorldPoint(mousePos);
+            GetComponent<Rigidbody>().velocity = new Vector3(3, screenPos.y, screenPos.z) * 0.5f;
+
+            isThrowing = false;
+            isSelected = false;
+            BroadcastMessage("UpdateIsSelected_SC_Target", false);
+        }
     }
 
     public void Lock()
@@ -119,6 +134,11 @@ public class SC_Follower : MonoBehaviour
     {
         GetComponent<Light>().enabled = !GetComponent<Light>().enabled;
         BroadcastMessage("ToggleLight", GetComponent<Light>().enabled);
+    }
+
+    public void UpdateIsThrowing_SC_Follower()
+    {
+        isThrowing = true;
     }
 
     public void UpdateIsSelected_SC_Follower(bool _isSelected)

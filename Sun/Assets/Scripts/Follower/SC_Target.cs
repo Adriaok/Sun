@@ -29,6 +29,7 @@ public class SC_Target : MonoBehaviour
             CheckIfRotating();
             CheckIfRotationLock();
             CheckIfToggleLight();
+            CheckIfThrowing();
         }
         else
         {
@@ -132,6 +133,14 @@ public class SC_Target : MonoBehaviour
         }
     }
 
+    private void CheckIfThrowing()
+    {
+        if(isSelected && Input.GetKeyDown(KeyCode.Q))
+        {
+            BroadcastMessage("UpdateIsThrowing_SC_Follower");
+        }
+    }
+
     private void UpdateMaterialColor()
     {
         if (isHovered && !isSelected)
@@ -153,6 +162,7 @@ public class SC_Target : MonoBehaviour
             transform.position = rayPoint + startDist;
         }
     }
+
 
     public void UpdateIsSelected_SC_Target(bool _isSelected)
     {
