@@ -89,10 +89,10 @@ public class SC_Follower : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             var mousePos = Input.mousePosition;
-            mousePos.z = 0.1f;
+            //mousePos.z = 0.1f;
             Camera camera = GameObject.FindAnyObjectByType<Camera>();
             Vector3 screenPos = camera.ScreenToWorldPoint(mousePos);
-            GetComponent<Rigidbody>().velocity = new Vector3(3, screenPos.y, screenPos.z) * 0.5f;
+            GetComponent<Rigidbody>().velocity = new Vector3(screenPos.x, screenPos.y, screenPos.z) * 0.5f;
 
             isThrowing = false;
             isSelected = false;
