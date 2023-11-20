@@ -16,7 +16,6 @@ public class SC_Follower : MonoBehaviour
     private Transform cameraTransform;
     private NavMeshAgent navMeshAgent;
     public Rigidbody rb;
-    float angularSpeedBeforeLock; 
 
     public bool isLocked = false;
     public bool isSelected = false;
@@ -71,16 +70,11 @@ public class SC_Follower : MonoBehaviour
 
         if (!isRotationLocked)
         {
-            if (navMeshAgent.angularSpeed == 0)
-                navMeshAgent.angularSpeed = angularSpeedBeforeLock;
-
             transform.Rotate(new Vector3(
                 0.0f, 
                 cameraTransform.rotation.y - transform.rotation.y, 
                 0.0f)
             );
-
-            angularSpeedBeforeLock = navMeshAgent.angularSpeed;
         }
         else
         {
