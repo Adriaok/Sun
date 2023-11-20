@@ -4,35 +4,22 @@ using Unity.VisualScripting;
 
 public class SC_Button : MonoBehaviour
 {
-    public delegate void MonumentActions();
-    public static event MonumentActions monumentClicked;
-
     [SerializeField] private PlayerController player;
 
-    private void Update()
+    [SerializeField] private SC_Door door;
+
+    private void Start()
     {
-        if (Input.GetKeyUp(KeyCode.L))
-        {
-            if (Vector3.Distance(transform.position, player.transform.position) <= 2.5f && monumentClicked != null)
-                monumentClicked();
-        }
+        door = GetComponentInChildren<SC_Door>();
     }
 
-    /*
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter()
     {
-        if (collision.gameObject.GetComponent<PlayerController>() != null)
-        {
-            Debug.Log("collided");
-            if (monumentClicked != null)
-            {
-                monumentClicked();
-            }
-        }
+        door.Open();
+    }
 
-
-        if (collision.gameObject.name == "/Player/Player/Capsule")
-        {
-        }
-    }*/
+    private void OnTriggerExit()
+    {
+        door.Close();
+    }
 }
