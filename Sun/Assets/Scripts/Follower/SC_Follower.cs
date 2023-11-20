@@ -13,6 +13,7 @@ public class SC_Follower : MonoBehaviour
 
     public bool isInPlayerFaction = false;
     private Transform followTarget;
+    private Transform cameraTransform;
     private NavMeshAgent navMeshAgent;
     public Rigidbody rb;
 
@@ -53,11 +54,12 @@ public class SC_Follower : MonoBehaviour
         */
     }
 
-    public void Init(Transform _followTarget)
+    public void Init(Transform _followTarget, Transform _cameraTransform)
     {
         //transformToFollow = GameObject.Find("Player").transform;
         //followTarget = GameObject.Find("Player").transform;
         followTarget = _followTarget;
+        cameraTransform = _cameraTransform;
         navMeshAgent = GetComponent<NavMeshAgent>();
         //transform.rotation = followTarget.rotation;
     }
@@ -88,7 +90,7 @@ public class SC_Follower : MonoBehaviour
 
             if (!isRotationLocked)
             {
-                transform.rotation = followTarget.rotation;
+            transform.Rotate(new Vector3(0.0f, cameraTransform.rotation.y, 0.0f));
             }
 
             Debug.Log("Follow target");

@@ -9,6 +9,7 @@ public class FollowerManager : MonoBehaviour
     public GameObject lanternPrefab;
     public GameObject flashlightPrefab;
     public Transform playerTransform;
+    public Transform cameraTransform;
 
     [SerializeField]
     public List<GameObject> rawFollowers = new List<GameObject>();
@@ -175,7 +176,7 @@ public class FollowerManager : MonoBehaviour
 
             //Add follower to the dictionary with the new id as key
             followers[newID] = rawFollowers[i];
-            followers[newID].GetComponent<SC_Follower>().Init(playerTransform);
+            followers[newID].GetComponent<SC_Follower>().Init(playerTransform, cameraTransform);
             followers[newID].GetComponent<SC_Follower>().ID = newID;
             followers[newID].layer = 7;
 
@@ -221,7 +222,7 @@ public class FollowerManager : MonoBehaviour
     private GameObject InstantiateWhisp(string newID)
     {
         GameObject newFollower = Instantiate(whispPrefab, new Vector3(37.6669273f, 10, 66.4128876f), Quaternion.identity);
-        newFollower.GetComponent<SC_Follower>().Init(playerTransform);
+        newFollower.GetComponent<SC_Follower>().Init(playerTransform, cameraTransform);
         newFollower.GetComponent<SC_Follower>().ID = newID;
         newFollower.layer = 7;
 
@@ -232,7 +233,7 @@ public class FollowerManager : MonoBehaviour
     private GameObject InstantiateLantern(string newID)
     {
         GameObject newFollower = Instantiate(lanternPrefab, new Vector3(37.6669273f, 10, 66.4128876f), Quaternion.identity);
-        newFollower.GetComponent<SC_Follower>().Init(playerTransform);
+        newFollower.GetComponent<SC_Follower>().Init(playerTransform, cameraTransform);
         newFollower.GetComponent<SC_Follower>().ID = newID;
         newFollower.layer = 7;
 
@@ -242,7 +243,7 @@ public class FollowerManager : MonoBehaviour
     private GameObject InstantiateFlashlight(string newID)
     {
         GameObject newFollower = Instantiate(flashlightPrefab, new Vector3(37.6669273f, 10, 66.4128876f), Quaternion.identity);
-        newFollower.GetComponent<SC_Follower>().Init(playerTransform);
+        newFollower.GetComponent<SC_Follower>().Init(playerTransform, cameraTransform);
         newFollower.GetComponent<SC_Follower>().ID = newID;
         newFollower.layer = 7;
 
