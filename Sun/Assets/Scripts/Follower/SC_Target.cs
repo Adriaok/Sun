@@ -85,10 +85,14 @@ public class SC_Target : MonoBehaviour
         if(isSelected && Input.GetKeyDown(KeyCode.R))
         {
             isInPlayerFaction = true;
+            followerActions.actionObjectsWithID["Action_Recruit"].SetActive(false);
             BroadcastMessage("UpdateIsInPlayerFaction_SC_Follower", true);
             Debug.Log("Recruit");
             isSelected = false;
             BroadcastMessage("UpdateIsSelected_SC_Follower", false);
+
+            followerActions.actionObjectsWithID["Action_Select"].SetActive(true);
+            followerActions.actionObjectsWithID["Action_Deselect"].SetActive(false);
         }
     }
     private void CheckIfSelected()
@@ -100,11 +104,29 @@ public class SC_Target : MonoBehaviour
                 isSelected = false;
                 BroadcastMessage("UpdateIsSelected_SC_Follower", false);
                 panelUI.SetActive(false);
+
+                followerActions.actionObjectsWithID["Action_Select"].SetActive(true);
+                followerActions.actionObjectsWithID["Action_Deselect"].SetActive(false);
             }
             else
             {
                 isSelected = true;
                 BroadcastMessage("UpdateIsSelected_SC_Follower", true);
+
+                followerActions.actionObjectsWithID["Action_Select"].SetActive(false);
+                followerActions.actionObjectsWithID["Action_Deselect"].SetActive(true);
+
+                if(isInPlayerFaction)
+                {
+
+                }
+                else
+                {
+                    followerActions.actionObjectsWithID["Action_Recruit"].SetActive(true);
+                }
+
+
+
             }
        
         
@@ -130,6 +152,8 @@ public class SC_Target : MonoBehaviour
         {
             BroadcastMessage("LockRotation_SC_Follower");
             isSelected = false;
+            followerActions.actionObjectsWithID["Action_Select"].SetActive(true);
+            followerActions.actionObjectsWithID["Action_Deselect"].SetActive(false);
             BroadcastMessage("UpdateIsSelected_SC_Follower", false);
         }
     }
@@ -140,6 +164,8 @@ public class SC_Target : MonoBehaviour
         {
             BroadcastMessage("ToggleLight_SC_Follower");
             isSelected = false;
+            followerActions.actionObjectsWithID["Action_Select"].SetActive(true);
+            followerActions.actionObjectsWithID["Action_Deselect"].SetActive(false);
             BroadcastMessage("UpdateIsSelected_SC_Follower", false);
         }
     }
