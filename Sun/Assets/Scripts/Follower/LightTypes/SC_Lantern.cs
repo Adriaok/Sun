@@ -24,7 +24,10 @@ public class SC_Lantern : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CheckSphereCastCollision();
+        if (isLightToggled)
+        {
+            CheckSphereCastCollision();
+        }
     }
     // Update is called once per frame
     void Update()
@@ -46,9 +49,18 @@ public class SC_Lantern : MonoBehaviour
 
             if (hit.collider != null)
             {
-                //Debug.Log("Sphere cast detected obj");
+                Debug.Log("found object");
                 foundObject = hit.collider.gameObject.GetComponent<LightUpObject>();
-                foundObject.LightUp();
+                if (light.enabled)
+                {
+                    foundObject.LightUp();
+                    Debug.Log(foundObject.name);
+                }
+                else
+                {
+                    foundObject.LightDown();
+                    Debug.Log("light down");
+                }
             }
         }
         else
