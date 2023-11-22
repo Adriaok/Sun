@@ -93,6 +93,14 @@ public class SC_Target : MonoBehaviour
 
             followerActions.actionObjectsWithID["Action_Select"].SetActive(true);
             followerActions.actionObjectsWithID["Action_Deselect"].SetActive(false);
+
+            //Init options (according to default bool values)
+            followerActions.actionObjectsWithID["Action_Drag"].SetActive(true);
+            followerActions.actionObjectsWithID["Action_Lock"].SetActive(true);
+            followerActions.actionObjectsWithID["Action_EnableLight"].SetActive(true);
+            followerActions.actionObjectsWithID["Action_RotateLeft"].SetActive(true);
+            followerActions.actionObjectsWithID["Action_RotateRight"].SetActive(true);
+            followerActions.actionObjectsWithID["Action_LockRotation"].SetActive(true);
         }
     }
     private void CheckIfSelected()
@@ -116,17 +124,10 @@ public class SC_Target : MonoBehaviour
                 followerActions.actionObjectsWithID["Action_Select"].SetActive(false);
                 followerActions.actionObjectsWithID["Action_Deselect"].SetActive(true);
 
-                if(isInPlayerFaction)
-                {
-
-                }
-                else
+                if(!isInPlayerFaction)
                 {
                     followerActions.actionObjectsWithID["Action_Recruit"].SetActive(true);
                 }
-
-
-
             }
        
         
@@ -152,9 +153,13 @@ public class SC_Target : MonoBehaviour
         {
             BroadcastMessage("LockRotation_SC_Follower");
             isSelected = false;
+            BroadcastMessage("UpdateIsSelected_SC_Follower", false);
+
             followerActions.actionObjectsWithID["Action_Select"].SetActive(true);
             followerActions.actionObjectsWithID["Action_Deselect"].SetActive(false);
-            BroadcastMessage("UpdateIsSelected_SC_Follower", false);
+
+            followerActions.actionObjectsWithID["Action_LockRotation"].active = !followerActions.actionObjectsWithID["Action_LockRotation"].active;
+            followerActions.actionObjectsWithID["Action_UnlockRotation"].active = !followerActions.actionObjectsWithID["Action_UnlockRotation"].active;
         }
     }
 
@@ -164,9 +169,13 @@ public class SC_Target : MonoBehaviour
         {
             BroadcastMessage("ToggleLight_SC_Follower");
             isSelected = false;
+            BroadcastMessage("UpdateIsSelected_SC_Follower", false);
+
             followerActions.actionObjectsWithID["Action_Select"].SetActive(true);
             followerActions.actionObjectsWithID["Action_Deselect"].SetActive(false);
-            BroadcastMessage("UpdateIsSelected_SC_Follower", false);
+
+            followerActions.actionObjectsWithID["Action_EnableLight"].active = !followerActions.actionObjectsWithID["Action_LockRotation"].active;
+            followerActions.actionObjectsWithID["Action_DisableLight"].active = !followerActions.actionObjectsWithID["Action_UnlockRotation"].active;
         }
     }
 

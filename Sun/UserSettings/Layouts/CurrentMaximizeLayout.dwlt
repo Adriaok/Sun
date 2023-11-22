@@ -187,8 +187,8 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 0640ffff
-      m_LastClickedID: -49146
+      m_SelectedIDs: 48e3feff
+      m_LastClickedID: -72888
       m_ExpandedIDs: 48e3feffb217fffff026ffffc437ffffd437ffff0c3effff1e3effffba40ffffdcd9ffff8ce0ffff0efbffff6264000038650000a46201004c6301007a630100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -602,8 +602,8 @@ MonoBehaviour:
       floating: 0
       collapsed: 1
       displayed: 1
-      snapOffset: {x: -209.60002, y: -194.40001}
-      snapOffsetDelta: {x: -0.000015258789, y: 0}
+      snapOffset: {x: -209.60004, y: -194.40001}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 3
       id: AINavigationOverlay
       index: 0
@@ -647,9 +647,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 62.737312, y: 6.24607, z: 35.816006}
+    m_Target: {x: 48.15071, y: 6.10872, z: 33.827183}
     speed: 2
-    m_Value: {x: 62.737312, y: 6.24607, z: 35.816006}
+    m_Value: {x: 48.15071, y: 6.10872, z: 33.827183}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -695,13 +695,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.474
   m_Rotation:
-    m_Target: {x: -0.0050541693, y: -0.8704623, z: 0.18915659, w: 0.4562876}
+    m_Target: {x: -0.041649256, y: -0.18112886, z: 0.08475628, w: 0.9797888}
     speed: 2
-    m_Value: {x: -0.005049857, y: -0.86971956, z: 0.18899518, w: 0.45589826}
+    m_Value: {x: -0.041613653, y: -0.18097402, z: 0.08468383, w: 0.9789512}
   m_Size:
-    m_Target: 5.0397058
+    m_Target: 9.458687
     speed: 2
-    m_Value: 5.0397058
+    m_Value: 9.458687
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -868,8 +868,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 0640ffff
-    m_LastClickedInstanceID: -49146
+    m_SelectedInstanceIDs: 48e3feff
+    m_LastClickedInstanceID: -72888
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
