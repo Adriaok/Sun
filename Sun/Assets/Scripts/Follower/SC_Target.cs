@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SC_Target : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject panelUI;
     private MeshRenderer renderer;
     private bool isHovered = false;
     public bool isSelected = false;
@@ -17,6 +19,7 @@ public class SC_Target : MonoBehaviour
     void Start()
     {
         renderer = GetComponentInChildren<MeshRenderer>();
+        panelUI.SetActive(false);
     }
 
     void Update()
@@ -42,11 +45,13 @@ public class SC_Target : MonoBehaviour
     private void OnMouseEnter()
     {
         isHovered = true;
+        panelUI.SetActive(true);
     }
 
     private void OnMouseExit()
     {
         isHovered = false;
+        panelUI.SetActive(false);
     }
 
     private void OnMouseDown()
