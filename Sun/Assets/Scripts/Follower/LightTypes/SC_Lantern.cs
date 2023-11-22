@@ -40,10 +40,9 @@ public class SC_Lantern : MonoBehaviour
         // This would cast rays only against colliders in layer 6.
         int layerMask = 1 << 6;
 
-        RaycastHit hit;
-        // Does the sphere intersect any objects excluding the player layer
-        //if (Physics.Raycast(GetComponent<Rigidbody>().position, transform.TransformDirection(Vector3.forward), out hit, light.range, layerMask))
-        if (Physics.SphereCast(GetComponent<Rigidbody>().position, light.range, transform.TransformDirection(Vector3.forward), out hit, light.range, layerMask))
+        RaycastHit[] hits = Physics.SphereCastAll(GetComponent<Rigidbody>().position, light.range, transform.TransformDirection(Vector3.forward), light.range, layerMask);
+        //if (Physics.SphereCast(GetComponent<Rigidbody>().position, light.range, transform.TransformDirection(Vector3.forward), out hit, light.range, layerMask))
+        foreach(var hit in hits)
         {
             //Debug.DrawRay(GetComponent<Rigidbody>().position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.black);
 
@@ -63,15 +62,7 @@ public class SC_Lantern : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            //Debug.DrawRay(GetComponent<Rigidbody>().position, transform.TransformDirection(Vector3.forward) * 1000, Color.black);
-
-            if (foundObject != null)
-            {
-                foundObject.LightDown();
-            }
-        }
+    
     }
 
     public void ToggleLight(bool _state)
