@@ -54,7 +54,6 @@ public class SC_Lantern : MonoBehaviour
                 else
                 {
                     foundObject.LightDown();
-                    Debug.Log("light down");
                 }
             }
         }

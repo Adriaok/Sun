@@ -55,9 +55,15 @@ public class SC_Whisp : MonoBehaviour
                 //foundObject = GameObject.Find(raycastReturn);
                 foundObject = hit.collider.gameObject.GetComponent<LightUpObject>();
                 if (light.enabled)
+                {
                     foundObject.LightUp();
+                    Debug.Log("Light up");
+                }
                 else
+                {
                     foundObject.LightDown();
+                    Debug.Log("Light down");
+                }
             }
         }
         else
