@@ -109,13 +109,13 @@ public class FollowerManager : MonoBehaviour
             if (lockedFlock)
             {
                 lockedFlock = false;
-                SetFollowersRbIsKinematic(false);
+                //SetFollowersRbIsKinematic(false);
                 Debug.Log("Unlock entire flock");
             }
             else
             {
                 lockedFlock = true;
-                SetFollowersRbIsKinematic(true);
+                //SetFollowersRbIsKinematic(true);
                 Debug.Log("Lock entire flock");
             }
         }

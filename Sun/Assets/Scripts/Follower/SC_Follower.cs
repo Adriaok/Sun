@@ -35,7 +35,8 @@ public class SC_Follower : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>(); 
+        rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true;
     }
     // Start is called before the first frame update
     void Start()
@@ -92,22 +93,32 @@ public class SC_Follower : MonoBehaviour
         //With the left click...
         if(Input.GetMouseButtonDown(0))
         {
+            float throwForce = 1000f;
+            //rb.AddForce(throwForce * Vector3.forward, ForceMode.Impulse);
+            rb.AddForce(throwForce * new Vector3(
+                transform.rotation.x,
+                1f,
+                transform.rotation.z
+                ), ForceMode.Impulse);
+            /*
             var mousePos = Input.mousePosition;
             //Debug.Log(mousePos);
             mousePos.z = 0.1f;
             Camera camera = GameObject.FindAnyObjectByType<Camera>();
             Vector3 screenPos = camera.ScreenToWorldPoint(mousePos);
-            Debug.Log(screenPos);
+            //Debug.Log(screenPos);
+            screenPos.Normalize();
             rb.AddRelativeForce(new Vector3(
-                screenPos.x * 100f,
-                10000f,
-                screenPos.z * 100f
+                screenPos.x * 1000f,
+                0f,
+                screenPos.z * 1000f
                 ));
+            */
 
             //rb.AddForce(screenPos * 100f);
             //GetComponent<Rigidbody>().velocity = new Vector3(screenPos.x, screenPos.y, screenPos.z);
             //GetComponent<Rigidbody>().velocity = (screenPos - camera.transform.position) * 0.5f;
-             
+
             /*
             Camera camera = GameObject.FindAnyObjectByType<Camera>();
             Ray r = camera.ScreenPointToRay(Input.mousePosition);
@@ -125,13 +136,13 @@ public class SC_Follower : MonoBehaviour
     public void Lock()
     {
         isLocked = true;
-        rb.isKinematic = true;
+        //rb.isKinematic = true;
     }
 
     public void Unlock()
     {
         isLocked = false;
-        rb.isKinematic = false;
+        //rb.isKinematic = false;
     }
 
     public void UpdateIsInPlayerFaction_SC_Follower(bool _value)
