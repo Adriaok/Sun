@@ -201,6 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSelected: 0
   isInPlayerFaction: 0
+  panelUI: {fileID: 0}
 --- !u!114 &6959308210367354087
 MonoBehaviour:
   m_ObjectHideFlags: 0

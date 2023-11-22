@@ -14,6 +14,7 @@ public class SC_UI_FollowerActions : MonoBehaviour
     void Start()
     {
         InitActionObjectsWithID();
+        DisableBeginningUnavailableActions();
     }
 
     // Update is called once per frame
@@ -27,6 +28,15 @@ public class SC_UI_FollowerActions : MonoBehaviour
         for(int i = 0; i < actionObjects.Count; i++)
         {
             actionObjectsWithID[actionObjects[i].name] = actionObjects[i];
+        }
+    }
+
+    private void DisableBeginningUnavailableActions()
+    {
+        for (int i = 0; i < actionObjects.Count; i++)
+        {
+            if(actionObjects[i].name != "Action_Select")
+                actionObjectsWithID[actionObjects[i].name].SetActive(false);
         }
     }
 }

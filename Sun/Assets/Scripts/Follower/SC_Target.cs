@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class SC_Target : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject panelUI;
     private MeshRenderer renderer;
     private bool isHovered = false;
     public bool isSelected = false;
@@ -16,9 +14,15 @@ public class SC_Target : MonoBehaviour
 
     public bool isInPlayerFaction = false;
 
+    private SC_UI_FollowerActions followerActions;
+
+    [SerializeField]
+    private GameObject panelUI;
+
     void Start()
     {
         renderer = GetComponentInChildren<MeshRenderer>();
+        followerActions = panelUI.GetComponent<SC_UI_FollowerActions>();
         panelUI.SetActive(false);
     }
 
@@ -51,7 +55,9 @@ public class SC_Target : MonoBehaviour
     private void OnMouseExit()
     {
         isHovered = false;
-        panelUI.SetActive(false);
+
+        if(!isSelected)
+            panelUI.SetActive(false);
     }
 
     private void OnMouseDown()
@@ -62,7 +68,6 @@ public class SC_Target : MonoBehaviour
         Vector3 rayPoint = ray.GetPoint(distance);
         startDist = transform.position - rayPoint;
         BroadcastMessage("UpdateIsDragging_SC_Follower", true);
-
     }
 
     private void OnMouseUp()
@@ -94,6 +99,7 @@ public class SC_Target : MonoBehaviour
             {
                 isSelected = false;
                 BroadcastMessage("UpdateIsSelected_SC_Follower", false);
+                panelUI.SetActive(false);
             }
             else
             {
