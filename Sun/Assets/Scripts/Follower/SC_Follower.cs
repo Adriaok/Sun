@@ -47,14 +47,15 @@ public class SC_Follower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    }
-
-    private void FixedUpdate()
-    {
         if (isThrowing)
         {
             BeThrown();
         }
+    }
+
+    private void FixedUpdate()
+    {
+        
     }
 
     public void Init(Transform _followTarget, Transform _cameraTransform)
@@ -93,6 +94,7 @@ public class SC_Follower : MonoBehaviour
         //With the left click...
         if(Input.GetMouseButtonDown(0))
         {
+            /*
             float throwForce = 1000f;
             //rb.AddForce(throwForce * Vector3.forward, ForceMode.Impulse);
             rb.AddForce(throwForce * new Vector3(
@@ -100,20 +102,23 @@ public class SC_Follower : MonoBehaviour
                 1f,
                 transform.rotation.z
                 ), ForceMode.Impulse);
-            /*
+            */
+
+            Debug.Log("Throw");
+            
             var mousePos = Input.mousePosition;
             //Debug.Log(mousePos);
             mousePos.z = 0.1f;
             Camera camera = GameObject.FindAnyObjectByType<Camera>();
             Vector3 screenPos = camera.ScreenToWorldPoint(mousePos);
-            //Debug.Log(screenPos);
-            screenPos.Normalize();
-            rb.AddRelativeForce(new Vector3(
+            Debug.Log(screenPos);
+            //screenPos.Normalize();
+            rb.AddForce(new Vector3(
                 screenPos.x * 1000f,
                 0f,
                 screenPos.z * 1000f
                 ));
-            */
+            
 
             //rb.AddForce(screenPos * 100f);
             //GetComponent<Rigidbody>().velocity = new Vector3(screenPos.x, screenPos.y, screenPos.z);
