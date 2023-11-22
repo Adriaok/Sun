@@ -44,6 +44,13 @@ public class SC_Target : MonoBehaviour
         }
 
         UpdateMaterialColor();
+        panelUI.transform.position = new Vector3(
+            transform.position.x,
+            transform.position.y + 5f,
+            transform.position.z);
+
+        panelUI.transform.rotation = transform.rotation;
+        panelUI.transform.Rotate(new Vector3(0f, 180f, 0f));
     }
 
     private void OnMouseEnter()
@@ -115,6 +122,8 @@ public class SC_Target : MonoBehaviour
 
                 followerActions.actionObjectsWithID["Action_Select"].SetActive(true);
                 followerActions.actionObjectsWithID["Action_Deselect"].SetActive(false);
+
+                //followerActions.DisableBeginningUnavailableActions();
             }
             else
             {
@@ -128,6 +137,7 @@ public class SC_Target : MonoBehaviour
                 {
                     followerActions.actionObjectsWithID["Action_Recruit"].SetActive(true);
                 }
+
             }
        
         

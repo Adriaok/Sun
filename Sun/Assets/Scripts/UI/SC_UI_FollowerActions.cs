@@ -31,7 +31,7 @@ public class SC_UI_FollowerActions : MonoBehaviour
         }
     }
 
-    private void DisableBeginningUnavailableActions()
+    public void DisableBeginningUnavailableActions()
     {
         for (int i = 0; i < actionObjects.Count; i++)
         {
