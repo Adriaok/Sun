@@ -14,6 +14,8 @@ public class SC_Target : MonoBehaviour
 
     public bool isInPlayerFaction = false;
 
+    private Transform cameraTransform;
+
     private SC_UI_FollowerActions followerActions;
 
     [SerializeField]
@@ -22,6 +24,7 @@ public class SC_Target : MonoBehaviour
     void Start()
     {
         renderer = GetComponentInChildren<MeshRenderer>();
+        cameraTransform = GetComponent<SC_Follower>().cameraTransform;
         followerActions = panelUI.GetComponent<SC_UI_FollowerActions>();
         panelUI.SetActive(false);
     }
@@ -51,6 +54,12 @@ public class SC_Target : MonoBehaviour
 
         panelUI.transform.rotation = transform.rotation;
         panelUI.transform.Rotate(new Vector3(0f, 180f, 0f));
+
+        /*panelUI.transform.Rotate(new Vector3(
+                0.0f,
+                cameraTransform.rotation.y - transform.rotation.y,
+                0.0f)
+            );*/
     }
 
     private void OnMouseEnter()

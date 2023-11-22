@@ -13,7 +13,7 @@ public class SC_Follower : MonoBehaviour
 
     public bool isInPlayerFaction = false;
     private Transform followTarget;
-    private Transform cameraTransform;
+    public Transform cameraTransform;
     private NavMeshAgent navMeshAgent;
     public Rigidbody rb;
 
