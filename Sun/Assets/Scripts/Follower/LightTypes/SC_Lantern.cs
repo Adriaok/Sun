@@ -42,7 +42,7 @@ public class SC_Lantern : MonoBehaviour
         //if (Physics.Raycast(GetComponent<Rigidbody>().position, transform.TransformDirection(Vector3.forward), out hit, light.range, layerMask))
         if (Physics.SphereCast(GetComponent<Rigidbody>().position, light.range, transform.TransformDirection(Vector3.forward), out hit, light.range, layerMask))
         {
-            Debug.DrawRay(GetComponent<Rigidbody>().position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.black);
+            //Debug.DrawRay(GetComponent<Rigidbody>().position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.black);
 
             if (hit.collider != null)
             {
@@ -53,7 +53,7 @@ public class SC_Lantern : MonoBehaviour
         }
         else
         {
-            Debug.DrawRay(GetComponent<Rigidbody>().position, transform.TransformDirection(Vector3.forward) * 1000, Color.black);
+            //Debug.DrawRay(GetComponent<Rigidbody>().position, transform.TransformDirection(Vector3.forward) * 1000, Color.black);
 
             if (foundObject != null)
             {

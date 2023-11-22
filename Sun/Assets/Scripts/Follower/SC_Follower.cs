@@ -142,12 +142,14 @@ public class SC_Follower : MonoBehaviour
     public void Lock()
     {
         isLocked = true;
+        navMeshAgent.isStopped = true;
         //rb.isKinematic = true;
     }
 
     public void Unlock()
     {
         isLocked = false;
+        navMeshAgent.isStopped = false;
         //rb.isKinematic = false;
     }
 
