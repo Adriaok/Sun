@@ -153,6 +153,11 @@ public class SC_Follower : MonoBehaviour
         //rb.isKinematic = false;
     }
 
+    public void SetNavMeshAgentIsStopped(bool _value)
+    {
+        navMeshAgent.isStopped = _value;
+    }
+
     public void UpdateIsInPlayerFaction_SC_Follower(bool _value)
     {
         isInPlayerFaction = _value;

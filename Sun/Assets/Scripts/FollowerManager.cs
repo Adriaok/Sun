@@ -111,12 +111,23 @@ public class FollowerManager : MonoBehaviour
                 lockedFlock = false;
                 //SetFollowersRbIsKinematic(false);
                 Debug.Log("Unlock entire flock");
+
+                foreach (KeyValuePair<string, GameObject> follower in followers)
+                {
+                    if(!follower.Value.GetComponent<SC_Follower>().isLocked)
+                        follower.Value.GetComponent<SC_Follower>().SetNavMeshAgentIsStopped(lockedFlock);
+                }
             }
             else
             {
                 lockedFlock = true;
                 //SetFollowersRbIsKinematic(true);
                 Debug.Log("Lock entire flock");
+
+                foreach (KeyValuePair<string, GameObject> follower in followers)
+                {
+                    follower.Value.GetComponent<SC_Follower>().SetNavMeshAgentIsStopped(lockedFlock);
+                }
             }
         }
     }

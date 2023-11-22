@@ -46,7 +46,7 @@ public class SC_Lantern : MonoBehaviour
 
             if (hit.collider != null)
             {
-                Debug.Log("Sphere cast detected obj");
+                //Debug.Log("Sphere cast detected obj");
                 foundObject = hit.collider.gameObject.GetComponent<LightUpObject>();
                 foundObject.LightUp();
             }
