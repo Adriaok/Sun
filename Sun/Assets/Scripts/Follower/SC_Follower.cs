@@ -105,7 +105,8 @@ public class SC_Follower : MonoBehaviour
             */
 
             Debug.Log("Throw");
-            
+            //rb.isKinematic = false;
+            /*
             var mousePos = Input.mousePosition;
             //Debug.Log(mousePos);
             mousePos.z = 0.1f;
@@ -118,19 +119,19 @@ public class SC_Follower : MonoBehaviour
                 0f,
                 screenPos.z * 1000f
                 ));
-            
+            */
 
             //rb.AddForce(screenPos * 100f);
             //GetComponent<Rigidbody>().velocity = new Vector3(screenPos.x, screenPos.y, screenPos.z);
             //GetComponent<Rigidbody>().velocity = (screenPos - camera.transform.position) * 0.5f;
 
-            /*
+            
             Camera camera = GameObject.FindAnyObjectByType<Camera>();
             Ray r = camera.ScreenPointToRay(Input.mousePosition);
             Vector3 dir = r.GetPoint(1) - r.GetPoint(0);
             transform.rotation = Quaternion.LookRotation(dir);
             rb.velocity = transform.forward * 20;
-            */
+            
 
             isThrowing = false;
             isSelected = false;
