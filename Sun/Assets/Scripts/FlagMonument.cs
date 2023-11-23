@@ -10,6 +10,8 @@ public class FlagMonument : MonoBehaviour
     [SerializeField] private int minFollowerRequirement;
     private ParticleSystem particles;
 
+    private int currentFollowers;
+
     void Start()
     {
         particles = GetComponent<ParticleSystem>();
@@ -17,9 +19,17 @@ public class FlagMonument : MonoBehaviour
 
     void Update()
     {
+
+        currentFollowers = 0;
+        foreach (KeyValuePair<string, GameObject> follower in followerManager.followers)
+        {
+            if (follower.Value.GetComponent<SC_Follower>().isInPlayerFaction)
+                currentFollowers++;
+        }
+
         if (Vector3.Distance(player.position, transform.position) <= 10f &&
-            followerManager.followers.Count >= minFollowerRequirement && 
-            Input.GetKeyDown(KeyCode.L))
+        currentFollowers >= minFollowerRequirement &&
+        Input.GetKeyDown(KeyCode.L))
         {
             Debug.Log("in");
 

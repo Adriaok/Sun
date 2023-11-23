@@ -5781,3 +5781,64 @@ PrefabInstance:
       addedObject: {fileID: 71712440}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 438ce64c0c497fa4e9f80dbf107d80fd, type: 3}
+--- !u!1001 &8977914092128262219
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1733305177440565853, guid: 6af3b9ce39872c24788a7d83d5dfe6fc, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733305177440565853, guid: 6af3b9ce39872c24788a7d83d5dfe6fc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733305177440565853, guid: 6af3b9ce39872c24788a7d83d5dfe6fc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733305177440565853, guid: 6af3b9ce39872c24788a7d83d5dfe6fc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 11.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733305177440565853, guid: 6af3b9ce39872c24788a7d83d5dfe6fc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733305177440565853, guid: 6af3b9ce39872c24788a7d83d5dfe6fc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733305177440565853, guid: 6af3b9ce39872c24788a7d83d5dfe6fc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733305177440565853, guid: 6af3b9ce39872c24788a7d83d5dfe6fc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733305177440565853, guid: 6af3b9ce39872c24788a7d83d5dfe6fc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733305177440565853, guid: 6af3b9ce39872c24788a7d83d5dfe6fc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733305177440565853, guid: 6af3b9ce39872c24788a7d83d5dfe6fc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4985389576880425434, guid: 6af3b9ce39872c24788a7d83d5dfe6fc, type: 3}
+      propertyPath: m_Name
+      value: FlagMonument
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6af3b9ce39872c24788a7d83d5dfe6fc, type: 3}
