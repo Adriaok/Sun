@@ -13,6 +13,11 @@ public class LightUpObject : MonoBehaviour
     {
         playerCollider = GameObject.Find("Player").GetComponent<Collider>();
         collider = GetComponent<Collider>();
+        //Ignore collision between default layer & lightupobjects layer
+        Physics.IgnoreLayerCollision(0, 6, true);
+
+        //Ignore collision with other lightupobjects
+        Physics.IgnoreLayerCollision(6, 6, true);
     }
 
     // Update is called once per frame
@@ -24,23 +29,20 @@ public class LightUpObject : MonoBehaviour
     public void LightUp()
     {
         shadow.SetActive(false);
-        //GetComponent<Collider>().enabled = false;
         Physics.IgnoreCollision(collider, playerCollider, true);
-        //Physics.IgnoreLayerCollision(0, 7);     //Doesn't worK
         Physics.IgnoreLayerCollision(6, 7);     //Doesn't worK
     }
 
     public void LightDown()
     {
         shadow.SetActive(true);
-        //GetComponent<Collider>().enabled = true;
         Physics.IgnoreCollision(collider, playerCollider, false);
-        //Physics.IgnoreLayerCollision(0, 7, false);
         Physics.IgnoreLayerCollision(6, 7, false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Enter shadow");
+        SC_FaithSystem.Instance.UpdateTotalFear(10);
     }
 }
