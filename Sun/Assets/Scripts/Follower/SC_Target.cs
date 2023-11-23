@@ -103,6 +103,7 @@ public class SC_Target : MonoBehaviour
             isInPlayerFaction = true;
             Debug.Log("Recruit");
             isSelected = false;
+            BroadcastMessage("UpdateIsInPlayerFaction_SC_Follower", true);
             BroadcastMessage("UpdateIsSelected_SC_Follower", false);
             //Call faith system singleton
             SC_FaithSystem.Instance.UpdateTotalFaith(20f);
