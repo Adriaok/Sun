@@ -39,7 +39,6 @@ public class FollowerManager : MonoBehaviour
             FollowPlayer();
 
         CheckActionsOnFollowers();
-        
         //Test
         /*
         elapsedTime += Time.deltaTime;
