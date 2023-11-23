@@ -44,5 +44,16 @@ public class LightUpObject : MonoBehaviour
     {
         Debug.Log("Enter shadow");
         SC_FaithSystem.Instance.UpdateTotalFear(10);
+
+
+        SC_Flashlight flashlight = other.GetComponentInParent<SC_Flashlight>();
+        if(flashlight != null)
+        {
+            Debug.Log("Die");
+            //Call destroy flashlight function
+            flashlight.Die();
+            //Increase total fear
+            //Decrease total faith
+        }
     }
 }

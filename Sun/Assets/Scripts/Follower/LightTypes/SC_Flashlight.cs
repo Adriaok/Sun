@@ -91,4 +91,10 @@ public class SC_Flashlight : MonoBehaviour
         isLightToggled = _state;
         light.enabled = _state;
     }
+
+    public void Die()
+    {
+        Debug.Log("Die");
+        Destroy(this.gameObject);
+    }
 }
