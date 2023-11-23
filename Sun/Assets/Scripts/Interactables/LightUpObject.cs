@@ -38,4 +38,9 @@ public class LightUpObject : MonoBehaviour
         //Physics.IgnoreLayerCollision(0, 7, false);
         Physics.IgnoreLayerCollision(6, 7, false);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Enter shadow");
+    }
 }
