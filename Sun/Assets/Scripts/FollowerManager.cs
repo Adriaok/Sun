@@ -42,6 +42,7 @@ public class FollowerManager : MonoBehaviour
             FollowPlayer();
 
         CheckActionsOnFollowers();
+        RemoveDeadFollowers();
         //Test
         /*
         elapsedTime += Time.deltaTime;
@@ -53,6 +54,18 @@ public class FollowerManager : MonoBehaviour
         }
         */
         
+    }
+
+    private void RemoveDeadFollowers()
+    {
+        foreach (KeyValuePair<string, GameObject> follower in followers)
+        {
+
+            if (follower.Value == null)
+            {
+                followers.Remove(follower.Key);
+            }
+        }
     }
 
     void LockFollower(string id)
