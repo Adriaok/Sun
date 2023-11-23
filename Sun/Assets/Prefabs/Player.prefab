@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _virtualCamera: {fileID: 790851050423781710}
   speed: 0.3
+  gravity: 20.5
 --- !u!143 &4234015228815956257
 CharacterController:
   m_ObjectHideFlags: 0
