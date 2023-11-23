@@ -161,6 +161,7 @@ public class SC_Follower : MonoBehaviour
     public void UpdateIsInPlayerFaction_SC_Follower(bool _value)
     {
         isInPlayerFaction = _value;
+        BroadcastMessage("UpdateTotalFaith_SC_FaithSystem", 20);
     }
 
     public void Rotate_SC_Follower(float _rotation)
