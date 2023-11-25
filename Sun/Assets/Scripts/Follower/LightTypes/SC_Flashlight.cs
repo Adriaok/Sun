@@ -38,7 +38,7 @@ public class SC_Flashlight : MonoBehaviour
         {
             if (CheckIfConsumed())
             {
-                light.enabled = false;
+                ToggleLight(false);
                 isConsumed = true;
                 Debug.Log("is consumed");
             }
@@ -90,6 +90,21 @@ public class SC_Flashlight : MonoBehaviour
     {
         isLightToggled = _state;
         light.enabled = _state;
+
+        if (!_state)
+        {
+            int layerMask = 1 << 6;
+
+            RaycastHit[] hits = Physics.SphereCastAll(GetComponent<Rigidbody>().position, light.range, transform.TransformDirection(Vector3.forward), light.range, layerMask);
+            foreach (var hit in hits)
+            {
+                if (hit.collider != null)
+                {
+                    foundObject = hit.collider.gameObject.GetComponent<LightUpObject>();
+                    foundObject.LightDown();
+                }
+            }
+        }
     }
 
     public void Die()
