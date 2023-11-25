@@ -13,8 +13,6 @@ public class FollowerManager : MonoBehaviour
 
     [SerializeField]
     public List<GameObject> rawFollowers = new List<GameObject>();
-    public GameObject faithSystemObject;
-    private SC_FaithSystem faithSystem;
 
     public Dictionary<string, GameObject> followers = new Dictionary<string, GameObject>();
     private List<string> unavailableIDs = new List<string>();
@@ -32,7 +30,6 @@ public class FollowerManager : MonoBehaviour
     void Start()
     {
         IdentifyFollowers();
-        faithSystem = faithSystemObject.GetComponent<SC_FaithSystem>();
     }
 
     // Update is called once per frame

@@ -52,15 +52,12 @@ public class SC_Flashlight : MonoBehaviour
         int layerMask = 1 << 6;
 
         RaycastHit hit;
-        // Does the ray intersect any objects excluding the player layer
         if (Physics.Raycast(GetComponent<Rigidbody>().position, transform.TransformDirection(Vector3.forward), out hit, light.range, layerMask))
         {
             Debug.DrawRay(GetComponent<Rigidbody>().position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.black);
 
             if (hit.collider != null)
             {
-                //raycastReturn = hit.collider.gameObject.name;
-                //foundObject = GameObject.Find(raycastReturn);
                 foundObject = hit.collider.gameObject.GetComponent<LightUpObject>();
                 foundObject.LightUp();
             }

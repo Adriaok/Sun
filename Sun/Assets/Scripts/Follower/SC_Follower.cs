@@ -26,12 +26,7 @@ public class SC_Follower : MonoBehaviour
     public string ID;
     public float lightRange = 20.0f;
 
-    //Harcoded, should do find
-    private float playerSpeed = 7.5f;
-
-    //TODO: Adjust values so they make sense
-    private float max_velocity = 7.0f;
-    private float max_force = 10.0f;
+    private float fearRadius = 100.0f;
 
     private void Awake()
     {
@@ -51,6 +46,9 @@ public class SC_Follower : MonoBehaviour
         {
             BeThrown();
         }
+
+        if(isInPlayerFaction)
+            CheckFearUpdate();
     }
 
     private void FixedUpdate()
@@ -94,38 +92,7 @@ public class SC_Follower : MonoBehaviour
         //With the left click...
         if(Input.GetMouseButtonDown(0))
         {
-            /*
-            float throwForce = 1000f;
-            //rb.AddForce(throwForce * Vector3.forward, ForceMode.Impulse);
-            rb.AddForce(throwForce * new Vector3(
-                transform.rotation.x,
-                1f,
-                transform.rotation.z
-                ), ForceMode.Impulse);
-            */
-
-            Debug.Log("Throw");
-            //rb.isKinematic = false;
-            /*
-            var mousePos = Input.mousePosition;
-            //Debug.Log(mousePos);
-            mousePos.z = 0.1f;
-            Camera camera = GameObject.FindAnyObjectByType<Camera>();
-            Vector3 screenPos = camera.ScreenToWorldPoint(mousePos);
-            Debug.Log(screenPos);
-            //screenPos.Normalize();
-            rb.AddForce(new Vector3(
-                screenPos.x * 1000f,
-                0f,
-                screenPos.z * 1000f
-                ));
-            */
-
-            //rb.AddForce(screenPos * 100f);
-            //GetComponent<Rigidbody>().velocity = new Vector3(screenPos.x, screenPos.y, screenPos.z);
-            //GetComponent<Rigidbody>().velocity = (screenPos - camera.transform.position) * 0.5f;
-
-            
+            Debug.Log("Throw");         
             Camera camera = GameObject.FindAnyObjectByType<Camera>();
             Ray r = camera.ScreenPointToRay(Input.mousePosition);
             Vector3 dir = r.GetPoint(1) - r.GetPoint(0);
@@ -137,6 +104,16 @@ public class SC_Follower : MonoBehaviour
             isSelected = false;
             BroadcastMessage("UpdateIsSelected_SC_Target", false);
         }
+    }
+
+    private void CheckFearUpdate()
+    {
+        float distanceToPlayer = Vector3.Distance(followTarget.position, transform.position);
+
+        if (isLocked && distanceToPlayer > fearRadius /*&& timeSinceUpdate < maxRecoverTime*/)
+            SC_FaithSystem.Instance.UpdateTotalFear(1f);
+        else if (!isLocked && distanceToPlayer < fearRadius /*&& timeSinceUpdate < maxRecoverTime*/)
+            SC_FaithSystem.Instance.UpdateTotalFear(-1f);
     }
 
     public void Lock()

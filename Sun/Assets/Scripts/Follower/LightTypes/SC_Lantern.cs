@@ -49,7 +49,6 @@ public class SC_Lantern : MonoBehaviour
                 if (light.enabled)
                 {
                     foundObject.LightUp();
-                    Debug.Log(foundObject.name);
                 }
                 else
                 {

@@ -39,6 +39,9 @@ public class SC_FaithSystem : MonoBehaviour
 
     public void UpdateTotalFear(float increment)
     {
+        if (increment < 0 && totalFear == 0)
+            return;
+
         totalFear += increment;
         totalFearValueText.GetComponent<TextMeshProUGUI>().text = totalFear.ToString();
     }
