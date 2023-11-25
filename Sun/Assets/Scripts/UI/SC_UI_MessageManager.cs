@@ -42,5 +42,6 @@ public class SC_UI_MessageManager : MonoBehaviour
     {
         GameObject newMessage = Instantiate(messagePrefab, transform);
         newMessage.GetComponent<TextMeshProUGUI>().text = text;
+        newMessage.transform.SetAsFirstSibling();
     }
 }
