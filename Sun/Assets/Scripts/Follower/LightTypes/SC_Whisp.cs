@@ -57,12 +57,12 @@ public class SC_Whisp : MonoBehaviour
                 if (light.enabled)
                 {
                     foundObject.LightUp();
-                    Debug.Log("Light up");
+                    Debug.Log("Light up" + foundObject);
                 }
                 else
                 {
                     foundObject.LightDown();
-                    Debug.Log("Light down");
+                    Debug.Log("Light down" + foundObject);
                 }
             }
         }

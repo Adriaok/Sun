@@ -90,6 +90,7 @@ public class SC_Flashlight : MonoBehaviour
     {
         isLightToggled = _state;
         light.enabled = _state;
+        Debug.Log("light enabled: " + _state);
     }
 
     public void Die()
