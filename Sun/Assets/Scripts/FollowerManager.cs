@@ -163,12 +163,23 @@ public class FollowerManager : MonoBehaviour
 
     void FollowPlayer()
     {
+        List<string> followersToRemove = new List<string>();
         foreach (KeyValuePair<string, GameObject> follower in followers)
         {
             if(!follower.Value.GetComponent<SC_Follower>().isLocked && follower.Value.GetComponent<SC_Follower>().isInPlayerFaction && follower.Value.GetComponent<SC_Follower>().gameObject.active)
             {
                 follower.Value.GetComponent<SC_Follower>().FollowPlayer();
             }
+            else if(!follower.Value.GetComponent<SC_Follower>().gameObject.active)
+            {
+                followersToRemove.Add(follower.Key);
+            }
+        }
+
+        foreach(string key in followersToRemove)
+        {
+            followers.Remove(key);
+            Debug.Log("remove");
         }
     }
 
