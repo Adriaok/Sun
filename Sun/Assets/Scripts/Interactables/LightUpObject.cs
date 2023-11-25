@@ -49,7 +49,7 @@ public class LightUpObject : MonoBehaviour
         SC_Flashlight flashlight = other.GetComponentInParent<SC_Flashlight>();
         if(flashlight != null)
         {
-            SC_UI_MessageManager.Instance.ShowMessage("A follower has been swallowed by the shadows");
+            SC_UI_MessageManager.Instance.ShowMessage("A Flashlight has been swallowed by the shadows");
             //Call destroy flashlight function
             flashlight.GetComponent<SC_Follower>().Die();
             //Increase total fear

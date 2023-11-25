@@ -136,6 +136,7 @@ public class SC_Follower : MonoBehaviour
     {
         isLocked = true;
         navMeshAgent.isStopped = true;
+        SC_UI_MessageManager.Instance.ShowMessage("Lock follower");
         //rb.isKinematic = true;
     }
 
@@ -143,6 +144,7 @@ public class SC_Follower : MonoBehaviour
     {
         isLocked = false;
         navMeshAgent.isStopped = false;
+        SC_UI_MessageManager.Instance.ShowMessage("Unlock follower");
         //rb.isKinematic = false;
     }
 
@@ -184,7 +186,11 @@ public class SC_Follower : MonoBehaviour
     public void LockRotation_SC_Follower()
     {
         isRotationLocked = !isRotationLocked;
-        Debug.Log("Rotation locked = " + isRotationLocked);
+        
+        if(isRotationLocked)
+            SC_UI_MessageManager.Instance.ShowMessage("Lock rotation");
+        else
+            SC_UI_MessageManager.Instance.ShowMessage("Unlock rotation");
     }
 
     public void ToggleLight_SC_Follower()

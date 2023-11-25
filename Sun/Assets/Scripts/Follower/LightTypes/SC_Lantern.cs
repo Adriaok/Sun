@@ -66,6 +66,8 @@ public class SC_Lantern : MonoBehaviour
 
         if(!_state)
         {
+            SC_UI_MessageManager.Instance.ShowMessage("Disable light in follower");
+
             int layerMask = 1 << 6;
 
             RaycastHit[] hits = Physics.SphereCastAll(GetComponent<Rigidbody>().position, light.range, transform.TransformDirection(Vector3.forward), light.range, layerMask);
@@ -77,6 +79,10 @@ public class SC_Lantern : MonoBehaviour
                     foundObject.LightDown();
                 }
             }
+        }
+        else
+        {
+            SC_UI_MessageManager.Instance.ShowMessage("Enable light in follower");
         }
     }
 }

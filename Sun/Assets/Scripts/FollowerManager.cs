@@ -129,6 +129,8 @@ public class FollowerManager : MonoBehaviour
                     if(!follower.Value.GetComponent<SC_Follower>().isLocked)
                         follower.Value.GetComponent<SC_Follower>().SetNavMeshAgentIsStopped(lockedFlock);
                 }
+
+                SC_UI_MessageManager.Instance.ShowMessage("Lock flock");
             }
             else
             {
@@ -140,6 +142,8 @@ public class FollowerManager : MonoBehaviour
                 {
                     follower.Value.GetComponent<SC_Follower>().SetNavMeshAgentIsStopped(lockedFlock);
                 }
+
+                SC_UI_MessageManager.Instance.ShowMessage("Unlock flock");
             }
         }
     }

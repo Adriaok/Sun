@@ -40,7 +40,7 @@ public class SC_Flashlight : MonoBehaviour
             {
                 ToggleLight(false);
                 isConsumed = true;
-                Debug.Log("is consumed");
+                SC_UI_MessageManager.Instance.ShowMessage("A Flashlight has burnt out");
             }
         }
     }
@@ -90,8 +90,11 @@ public class SC_Flashlight : MonoBehaviour
 
         if (!_state)
         {
+            SC_UI_MessageManager.Instance.ShowMessage("Disable light in follower");
+
             int layerMask = 1 << 6;
 
+            //TODO: Replace spherecast with ray cast??
             RaycastHit[] hits = Physics.SphereCastAll(GetComponent<Rigidbody>().position, light.range, transform.TransformDirection(Vector3.forward), light.range, layerMask);
             foreach (var hit in hits)
             {
@@ -101,6 +104,10 @@ public class SC_Flashlight : MonoBehaviour
                     foundObject.LightDown();
                 }
             }
+        }
+        else
+        {
+            SC_UI_MessageManager.Instance.ShowMessage("Enable light in follower");
         }
     }
 }
