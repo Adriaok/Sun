@@ -156,6 +156,7 @@ public class SC_Follower : MonoBehaviour
     {
         Die();
         SC_FaithSystem.Instance.UpdateTotalFear(10f);
+        SC_UI_MessageManager.Instance.ShowMessage("A follower has been sacrificed");
     }
 
     public void ChangeIsAfraid()
