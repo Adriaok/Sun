@@ -27,6 +27,8 @@ public class SC_Follower : MonoBehaviour
     public float lightRange = 20.0f;
 
     private float fearRadius = 100.0f;
+    private float timeSinceFearUpdateStart = 0.0f;
+    private float maxUpdateTime = 5.0f;
 
     private void Awake()
     {
@@ -110,10 +112,20 @@ public class SC_Follower : MonoBehaviour
     {
         float distanceToPlayer = Vector3.Distance(followTarget.position, transform.position);
 
-        if (isLocked && distanceToPlayer > fearRadius /*&& timeSinceUpdate < maxRecoverTime*/)
+        if (isLocked && distanceToPlayer > fearRadius && timeSinceFearUpdateStart < maxUpdateTime)
+        {
             SC_FaithSystem.Instance.UpdateTotalFear(1f);
-        else if (!isLocked && distanceToPlayer < fearRadius /*&& timeSinceUpdate < maxRecoverTime*/)
+            timeSinceFearUpdateStart += Time.deltaTime;
+        }
+        else if (!isLocked && distanceToPlayer < fearRadius && timeSinceFearUpdateStart < maxUpdateTime)
+        {
             SC_FaithSystem.Instance.UpdateTotalFear(-1f);
+            timeSinceFearUpdateStart += Time.deltaTime;
+        }
+        else
+        {
+            timeSinceFearUpdateStart = 0.0f;
+        }
     }
 
     public void Lock()
