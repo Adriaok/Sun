@@ -24,7 +24,10 @@ public class SC_Lantern : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CheckSphereCastCollision();
+        if (isLightToggled)
+        {
+            CheckSphereCastCollision();
+        }
     }
     // Update is called once per frame
     void Update()
@@ -38,11 +41,8 @@ public class SC_Lantern : MonoBehaviour
         int layerMask = 1 << 6;
 
         RaycastHit[] hits = Physics.SphereCastAll(GetComponent<Rigidbody>().position, light.range, transform.TransformDirection(Vector3.forward), light.range, layerMask);
-        //if (Physics.SphereCast(GetComponent<Rigidbody>().position, light.range, transform.TransformDirection(Vector3.forward), out hit, light.range, layerMask))
         foreach(var hit in hits)
         {
-            //Debug.DrawRay(GetComponent<Rigidbody>().position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.black);
-
             if (hit.collider != null)
             {
                 foundObject = hit.collider.gameObject.GetComponent<LightUpObject>();
@@ -64,5 +64,20 @@ public class SC_Lantern : MonoBehaviour
     {
         isLightToggled = _state;
         light.enabled = _state;
+
+        if(!_state)
+        {
+            int layerMask = 1 << 6;
+
+            RaycastHit[] hits = Physics.SphereCastAll(GetComponent<Rigidbody>().position, light.range, transform.TransformDirection(Vector3.forward), light.range, layerMask);
+            foreach (var hit in hits)
+            {
+                if (hit.collider != null)
+                {
+                    foundObject = hit.collider.gameObject.GetComponent<LightUpObject>();
+                    foundObject.LightDown();
+                }
+            }
+        }
     }
 }
