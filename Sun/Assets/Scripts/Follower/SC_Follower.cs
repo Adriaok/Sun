@@ -26,9 +26,11 @@ public class SC_Follower : MonoBehaviour
     public string ID;
     public float lightRange = 20.0f;
 
-    private float fearRadius = 100.0f;
+    private float fearRadius = 40.0f;
     private float timeSinceFearUpdateStart = 0.0f;
-    private float maxUpdateTime = 5.0f;
+    private float maxUpdateTime = 20.0f;
+    private bool isAfraid = false;
+    private int fear = 0;
 
     private void Awake()
     {
@@ -111,20 +113,22 @@ public class SC_Follower : MonoBehaviour
     private void CheckFearUpdate()
     {
         float distanceToPlayer = Vector3.Distance(followTarget.position, transform.position);
+        if (isAfraid && isLocked && distanceToPlayer > fearRadius && timeSinceFearUpdateStart < maxUpdateTime)
+        {
+            fear += 1;
+            if (fear % 500 == 0)
+            {
+                SC_FaithSystem.Instance.UpdateTotalFear(1f);
+            }
+           
+            timeSinceFearUpdateStart += Time.deltaTime;
+            Debug.Log(timeSinceFearUpdateStart);
 
-        if (isLocked && distanceToPlayer > fearRadius && timeSinceFearUpdateStart < maxUpdateTime)
-        {
-            SC_FaithSystem.Instance.UpdateTotalFear(1f);
-            timeSinceFearUpdateStart += Time.deltaTime;
         }
-        else if (!isLocked && distanceToPlayer < fearRadius && timeSinceFearUpdateStart < maxUpdateTime)
+        if (isAfraid && isLocked && distanceToPlayer > fearRadius && timeSinceFearUpdateStart > maxUpdateTime)
         {
-            SC_FaithSystem.Instance.UpdateTotalFear(-1f);
-            timeSinceFearUpdateStart += Time.deltaTime;
-        }
-        else
-        {
-            timeSinceFearUpdateStart = 0.0f;
+            Debug.Log("out of time");
+            BeSacrificed();
         }
     }
 
@@ -140,6 +144,23 @@ public class SC_Follower : MonoBehaviour
         isLocked = false;
         navMeshAgent.isStopped = false;
         //rb.isKinematic = false;
+    }
+
+    public void Die()
+    {
+        Debug.Log("Die");
+        this.gameObject.SetActive(false);
+    }
+
+    private void BeSacrificed()
+    {
+        Die();
+        SC_FaithSystem.Instance.UpdateTotalFear(10f);
+    }
+
+    public void ChangeIsAfraid()
+    {
+        isAfraid = !isAfraid;
     }
 
     public void SetNavMeshAgentIsStopped(bool _value)

@@ -32,7 +32,6 @@ public class SC_FaithSystem : MonoBehaviour
     public void UpdateTotalFaith(float increment)
     {
         totalFaith += increment;
-        Debug.Log(totalFaithValueText.GetComponent<TextMeshProUGUI>().text);
         totalFaithValueText.GetComponent<TextMeshProUGUI>().text = totalFaith.ToString();
         Debug.Log("Update total faith");
     }

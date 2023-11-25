@@ -51,7 +51,7 @@ public class LightUpObject : MonoBehaviour
         {
             Debug.Log("Die");
             //Call destroy flashlight function
-            flashlight.Die();
+            flashlight.GetComponent<SC_Follower>().Die();
             //Increase total fear
             //Decrease total faith
         }

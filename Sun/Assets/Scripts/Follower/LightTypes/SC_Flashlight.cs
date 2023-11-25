@@ -103,10 +103,4 @@ public class SC_Flashlight : MonoBehaviour
             }
         }
     }
-
-    public void Die()
-    {
-        Debug.Log("Die");
-        this.gameObject.SetActive(false);
-    }
 }
