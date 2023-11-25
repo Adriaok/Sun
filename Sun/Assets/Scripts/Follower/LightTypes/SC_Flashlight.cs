@@ -95,6 +95,6 @@ public class SC_Flashlight : MonoBehaviour
     public void Die()
     {
         Debug.Log("Die");
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
     }
 }

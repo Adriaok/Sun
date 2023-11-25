@@ -165,7 +165,7 @@ public class FollowerManager : MonoBehaviour
     {
         foreach (KeyValuePair<string, GameObject> follower in followers)
         {
-            if(!follower.Value.GetComponent<SC_Follower>().isLocked && follower.Value.GetComponent<SC_Follower>().isInPlayerFaction)
+            if(!follower.Value.GetComponent<SC_Follower>().isLocked && follower.Value.GetComponent<SC_Follower>().isInPlayerFaction && follower.Value.GetComponent<SC_Follower>().gameObject.active)
             {
                 follower.Value.GetComponent<SC_Follower>().FollowPlayer();
             }
