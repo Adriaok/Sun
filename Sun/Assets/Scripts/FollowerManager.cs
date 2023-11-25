@@ -13,6 +13,8 @@ public class FollowerManager : MonoBehaviour
 
     [SerializeField]
     public List<GameObject> rawFollowers = new List<GameObject>();
+    public GameObject faithSystemObject;
+    private SC_FaithSystem faithSystem;
 
     public Dictionary<string, GameObject> followers = new Dictionary<string, GameObject>();
     private List<string> unavailableIDs = new List<string>();
@@ -30,6 +32,7 @@ public class FollowerManager : MonoBehaviour
     void Start()
     {
         IdentifyFollowers();
+        faithSystem = faithSystemObject.GetComponent<SC_FaithSystem>();
     }
 
     // Update is called once per frame
@@ -39,6 +42,7 @@ public class FollowerManager : MonoBehaviour
             FollowPlayer();
 
         CheckActionsOnFollowers();
+        RemoveDeadFollowers();
         //Test
         /*
         elapsedTime += Time.deltaTime;
@@ -50,6 +54,18 @@ public class FollowerManager : MonoBehaviour
         }
         */
         
+    }
+
+    private void RemoveDeadFollowers()
+    {
+        foreach (KeyValuePair<string, GameObject> follower in followers)
+        {
+
+            if (follower.Value == null)
+            {
+                followers.Remove(follower.Key);
+            }
+        }
     }
 
     void LockFollower(string id)
@@ -147,12 +163,23 @@ public class FollowerManager : MonoBehaviour
 
     void FollowPlayer()
     {
+        List<string> followersToRemove = new List<string>();
         foreach (KeyValuePair<string, GameObject> follower in followers)
         {
-            if(!follower.Value.GetComponent<SC_Follower>().isLocked && follower.Value.GetComponent<SC_Follower>().isInPlayerFaction)
+            if(!follower.Value.GetComponent<SC_Follower>().isLocked && follower.Value.GetComponent<SC_Follower>().isInPlayerFaction && follower.Value.GetComponent<SC_Follower>().gameObject.active)
             {
                 follower.Value.GetComponent<SC_Follower>().FollowPlayer();
             }
+            else if(!follower.Value.GetComponent<SC_Follower>().gameObject.active)
+            {
+                followersToRemove.Add(follower.Key);
+            }
+        }
+
+        foreach(string key in followersToRemove)
+        {
+            followers.Remove(key);
+            Debug.Log("remove");
         }
     }
 
