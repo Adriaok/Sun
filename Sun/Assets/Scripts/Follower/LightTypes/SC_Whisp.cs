@@ -91,6 +91,21 @@ public class SC_Whisp : MonoBehaviour
     {
         isLightToggled = _state;
         light.enabled = _state;
+
+        if (!_state)
+        {
+            int layerMask = 1 << 6;
+
+            RaycastHit[] hits = Physics.SphereCastAll(GetComponent<Rigidbody>().position, light.range, transform.TransformDirection(Vector3.forward), light.range, layerMask);
+            foreach (var hit in hits)
+            {
+                if (hit.collider != null)
+                {
+                    foundObject = hit.collider.gameObject.GetComponent<LightUpObject>();
+                    foundObject.LightDown();
+                }
+            }
+        }
     }
 
 }
