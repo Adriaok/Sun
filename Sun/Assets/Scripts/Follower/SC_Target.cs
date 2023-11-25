@@ -101,12 +101,12 @@ public class SC_Target : MonoBehaviour
         if(isSelected && Input.GetKeyDown(KeyCode.R))
         {
             isInPlayerFaction = true;
-            Debug.Log("Recruit");
             isSelected = false;
             BroadcastMessage("UpdateIsInPlayerFaction_SC_Follower", true);
             BroadcastMessage("UpdateIsSelected_SC_Follower", false);
-            //Call faith system singleton
+          
             SC_FaithSystem.Instance.UpdateTotalFaith(20f);
+            SC_UI_MessageManager.Instance.ShowMessage("A follower has been recruited");
 
             followerActions.actionObjectsWithID["Action_Recruit"].SetActive(false);
             followerActions.actionObjectsWithID["Action_Select"].SetActive(true);
