@@ -43,7 +43,10 @@ public class SC_Target : MonoBehaviour
         }
         else
         {
-            CheckIfRecruiting();
+            if (isSelected && Input.GetKeyDown(KeyCode.R))
+            {
+                CheckIfRecruiting();
+            }
         }
 
         UpdateMaterialColor();
@@ -72,7 +75,7 @@ public class SC_Target : MonoBehaviour
     {
         isHovered = false;
 
-        if(!isSelected)
+        if (!isSelected)
             panelUI.SetActive(false);
     }
 
@@ -90,36 +93,34 @@ public class SC_Target : MonoBehaviour
     {
         isDragging = false;
         BroadcastMessage("UpdateIsDragging_SC_Follower", false);
-        
+
         //Code to deselect the follower when dropping it 
         //isSelected = false;
         //BroadcastMessage("UpdateIsSelected_SC_Follower", false);
     }
 
-    private void CheckIfRecruiting()
+    public void CheckIfRecruiting()
     {
-        if(isSelected && Input.GetKeyDown(KeyCode.R))
-        {
-            isInPlayerFaction = true;
-            isSelected = false;
-            BroadcastMessage("UpdateIsInPlayerFaction_SC_Follower", true);
-            BroadcastMessage("UpdateIsSelected_SC_Follower", false);
-          
-            SC_FaithSystem.Instance.UpdateTotalFaith(20f);
-            SC_UI_MessageManager.Instance.ShowMessage("A follower has been recruited");
+        isInPlayerFaction = true;
+        isSelected = false;
+        BroadcastMessage("UpdateIsInPlayerFaction_SC_Follower", true);
+        BroadcastMessage("UpdateIsSelected_SC_Follower", false);
 
-            followerActions.actionObjectsWithID["Action_Recruit"].SetActive(false);
-            followerActions.actionObjectsWithID["Action_Select"].SetActive(true);
-            followerActions.actionObjectsWithID["Action_Deselect"].SetActive(false);
+        SC_FaithSystem.Instance.UpdateTotalFaith(20f);
+        SC_UI_MessageManager.Instance.ShowMessage("A follower has been recruited");
 
-            //Init options (according to default bool values)
-            followerActions.actionObjectsWithID["Action_Drag"].SetActive(true);
-            followerActions.actionObjectsWithID["Action_Lock"].SetActive(true);
-            followerActions.actionObjectsWithID["Action_EnableLight"].SetActive(true);
-            followerActions.actionObjectsWithID["Action_RotateLeft"].SetActive(true);
-            followerActions.actionObjectsWithID["Action_RotateRight"].SetActive(true);
-            followerActions.actionObjectsWithID["Action_LockRotation"].SetActive(true);
-        }
+        followerActions.actionObjectsWithID["Action_Recruit"].SetActive(false);
+        followerActions.actionObjectsWithID["Action_Select"].SetActive(true);
+        followerActions.actionObjectsWithID["Action_Deselect"].SetActive(false);
+
+        //Init options (according to default bool values)
+        followerActions.actionObjectsWithID["Action_Drag"].SetActive(true);
+        followerActions.actionObjectsWithID["Action_Lock"].SetActive(true);
+        followerActions.actionObjectsWithID["Action_EnableLight"].SetActive(true);
+        followerActions.actionObjectsWithID["Action_RotateLeft"].SetActive(true);
+        followerActions.actionObjectsWithID["Action_RotateRight"].SetActive(true);
+        followerActions.actionObjectsWithID["Action_LockRotation"].SetActive(true);
+
     }
     private void CheckIfSelected()
     {
@@ -144,20 +145,20 @@ public class SC_Target : MonoBehaviour
                 followerActions.actionObjectsWithID["Action_Select"].SetActive(false);
                 followerActions.actionObjectsWithID["Action_Deselect"].SetActive(true);
 
-                if(!isInPlayerFaction)
+                if (!isInPlayerFaction)
                 {
                     followerActions.actionObjectsWithID["Action_Recruit"].SetActive(true);
                 }
 
             }
-       
-        
+
+
         }
     }
 
     private void CheckIfRotating()
     {
-        if(isSelected && Input.GetKeyDown(KeyCode.Z))
+        if (isSelected && Input.GetKeyDown(KeyCode.Z))
         {
             BroadcastMessage("Rotate_SC_Follower", -10.0f);
         }
@@ -170,7 +171,7 @@ public class SC_Target : MonoBehaviour
 
     private void CheckIfRotationLock()
     {
-        if(isSelected && Input.GetKeyDown(KeyCode.M))
+        if (isSelected && Input.GetKeyDown(KeyCode.M))
         {
             BroadcastMessage("LockRotation_SC_Follower");
             isSelected = false;
@@ -202,7 +203,7 @@ public class SC_Target : MonoBehaviour
 
     private void CheckIfThrowing()
     {
-        if(isSelected && Input.GetKeyDown(KeyCode.Q))
+        if (isSelected && Input.GetKeyDown(KeyCode.Q))
         {
             BroadcastMessage("UpdateIsThrowing_SC_Follower");
         }

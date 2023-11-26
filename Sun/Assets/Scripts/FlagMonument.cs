@@ -40,16 +40,7 @@ public class FlagMonument : MonoBehaviour
 
             foreach (SC_Target follower in followerList)
             {
-
-                follower.isSelected = true;
-                BroadcastMessage("UpdateIsSelected_SC_Follower", true);
-
-
-                follower.isInPlayerFaction = true;
-                BroadcastMessage("UpdateIsInPlayerFaction_SC_Follower", true);
-                Debug.Log("Recruit");
-                follower.isSelected = false;
-                BroadcastMessage("UpdateIsSelected_SC_Follower", false);
+                follower.CheckIfRecruiting();
             }
         }
     }
