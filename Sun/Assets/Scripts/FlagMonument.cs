@@ -17,7 +17,7 @@ public class FlagMonument : MonoBehaviour
     [SerializeField] private List<SC_Target> followerList;
 
     [SerializeField] private CameraController camera;
-    private float monumentOffset = 19f;
+    private float monumentOffset = 15f;
 
     void Start()
     {
@@ -50,18 +50,18 @@ public class FlagMonument : MonoBehaviour
         }
 
     }
-    float t = 0.0f;
-    public float minimum = -1.0F;
-    public float maximum = 1.0F;
 
     IEnumerator ResponseToMonument()
     {
-        float temp = camera._transposer.m_FollowOffset.y;
-        camera._transposer.m_FollowOffset.y = monumentOffset;
-
+        float tempY = camera._transposer.m_FollowOffset.y;
+        float tempZ = camera._transposer.m_FollowOffset.z;
+        camera._transposer.m_FollowOffset.y += monumentOffset;
+        camera._transposer.m_FollowOffset.z = -0.5f;
+     
         yield return new WaitForSeconds(5);
 
-        camera._transposer.m_FollowOffset.y = temp;
+        camera._transposer.m_FollowOffset.y = tempY;
+        camera._transposer.m_FollowOffset.z = tempZ;
         particles.enableEmission = false;
     }
 }
