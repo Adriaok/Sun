@@ -10,7 +10,7 @@ using static Cinemachine.CinemachineFreeLook;
 public class CameraController : MonoBehaviour
 {
     CinemachineVirtualCamera _virtualCamera;
-    CinemachineOrbitalTransposer _transposer;
+    public CinemachineOrbitalTransposer _transposer;
 
     private bool canTurn;
     private float cameraDistance;

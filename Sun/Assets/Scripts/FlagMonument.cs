@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class FlagMonument : MonoBehaviour
 {
+    private bool isUsed;
+    private int currentFollowers;
+
     [SerializeField] private Transform player;
     [SerializeField] private FollowerManager followerManager;
     [SerializeField] private int minFollowerRequirement;
@@ -12,7 +16,8 @@ public class FlagMonument : MonoBehaviour
 
     [SerializeField] private List<SC_Target> followerList;
 
-    private int currentFollowers;
+    [SerializeField] private CameraController camera;
+    private float monumentOffset = 19f;
 
     void Start()
     {
@@ -32,7 +37,7 @@ public class FlagMonument : MonoBehaviour
         currentFollowers >= minFollowerRequirement &&
         Input.GetKeyDown(KeyCode.L))
         {
-            Debug.Log("in");
+            StartCoroutine(ResponseToMonument());
 
             particles.startSpeed = 7.5f;
             particles.startSize = 1f;
@@ -43,5 +48,20 @@ public class FlagMonument : MonoBehaviour
                 follower.CheckIfRecruiting();
             }
         }
+
+    }
+    float t = 0.0f;
+    public float minimum = -1.0F;
+    public float maximum = 1.0F;
+
+    IEnumerator ResponseToMonument()
+    {
+        float temp = camera._transposer.m_FollowOffset.y;
+        camera._transposer.m_FollowOffset.y = monumentOffset;
+
+        yield return new WaitForSeconds(5);
+
+        camera._transposer.m_FollowOffset.y = temp;
+        particles.enableEmission = false;
     }
 }
