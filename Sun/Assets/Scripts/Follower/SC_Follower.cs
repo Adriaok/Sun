@@ -51,8 +51,11 @@ public class SC_Follower : MonoBehaviour
             BeThrown();
         }
 
-        if(isInPlayerFaction)
+        if (isInPlayerFaction)
+        {
+            CheckIsAfraid();
             CheckFearUpdate();
+        }
     }
 
     private void FixedUpdate()
@@ -110,22 +113,32 @@ public class SC_Follower : MonoBehaviour
         }
     }
 
-    private void CheckFearUpdate()
+    private void CheckIsAfraid()
     {
         float distanceToPlayer = Vector3.Distance(followTarget.position, transform.position);
-        if (isAfraid && isLocked && distanceToPlayer > fearRadius && timeSinceFearUpdateStart < maxUpdateTime)
+        if (isLocked && distanceToPlayer > fearRadius)
+        {
+            isAfraid = true;
+        }
+        else
+        {
+            isAfraid = false;
+        }
+    }
+
+    private void CheckFearUpdate()
+    {
+        if(isAfraid && timeSinceFearUpdateStart < maxUpdateTime)
         {
             fear += 1;
             if (fear % 500 == 0)
             {
                 SC_FaithSystem.Instance.UpdateTotalFear(1f);
             }
-           
-            timeSinceFearUpdateStart += Time.deltaTime;
-            Debug.Log(timeSinceFearUpdateStart);
 
+            timeSinceFearUpdateStart += Time.deltaTime;
         }
-        if (isAfraid && isLocked && distanceToPlayer > fearRadius && timeSinceFearUpdateStart > maxUpdateTime)
+        else if(isAfraid && timeSinceFearUpdateStart > maxUpdateTime)
         {
             Debug.Log("out of time");
             BeSacrificed();
