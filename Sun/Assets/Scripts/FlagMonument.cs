@@ -10,6 +10,8 @@ public class FlagMonument : MonoBehaviour
     [SerializeField] private int minFollowerRequirement;
     private ParticleSystem particles;
 
+    [SerializeField] private List<SC_Target> followerList;
+
     private int currentFollowers;
 
     void Start()
@@ -19,7 +21,6 @@ public class FlagMonument : MonoBehaviour
 
     void Update()
     {
-
         currentFollowers = 0;
         foreach (KeyValuePair<string, GameObject> follower in followerManager.followers)
         {
@@ -36,6 +37,20 @@ public class FlagMonument : MonoBehaviour
             particles.startSpeed = 7.5f;
             particles.startSize = 1f;
             particles.emissionRate = 15f;
+
+            foreach (SC_Target follower in followerList)
+            {
+
+                follower.isSelected = true;
+                BroadcastMessage("UpdateIsSelected_SC_Follower", true);
+
+
+                follower.isInPlayerFaction = true;
+                BroadcastMessage("UpdateIsInPlayerFaction_SC_Follower", true);
+                Debug.Log("Recruit");
+                follower.isSelected = false;
+                BroadcastMessage("UpdateIsSelected_SC_Follower", false);
+            }
         }
     }
 }
