@@ -17,7 +17,7 @@ public class FollowerManager : MonoBehaviour
     private List<string> unavailableIDs = new List<string>();
 
     //If true, the flock won't move. If false, it will follow the player
-    bool lockedFlock = true;
+    private bool lockedFlock = false;
 
 
     //Test
