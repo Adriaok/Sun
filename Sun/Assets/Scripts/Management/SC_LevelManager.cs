@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Solution
 {
@@ -37,6 +38,9 @@ public class SC_LevelManager : MonoBehaviour
     private const string WHISP_TYPE = "whisp";
     private const string LANTERN_TYPE = "lantern";
     private const string FLASHLIGHT_TYPE = "flashlight";
+
+    [SerializeField] private GameObject levelResetUI;
+    [SerializeField] private GameObject levelResetText;
 
     private List<Puzzle> puzzles = new List<Puzzle>();
 
@@ -78,9 +82,14 @@ public class SC_LevelManager : MonoBehaviour
         puzzle.InitPuzzle(solutionsList);
     }
 
-    public void ResetLevel()
+    public void ResetLevel(string messageText)
     {
-        Debug.Log("Reset scene");
+        levelResetUI.SetActive(true);
+        levelResetText.GetComponent<TextMeshProUGUI>().text = messageText;
+    }
+
+    public void ReloadScene()
+    {
         SceneManager.LoadScene("Level1");
     }
 }

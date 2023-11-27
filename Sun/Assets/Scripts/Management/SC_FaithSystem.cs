@@ -8,6 +8,8 @@ public class SC_FaithSystem : MonoBehaviour
     private float totalFaith;
     private float totalFear;
 
+    private const float limitFear = 2f;
+
     public GameObject totalFaithValueText;
     public GameObject totalFearValueText;
 
@@ -33,7 +35,9 @@ public class SC_FaithSystem : MonoBehaviour
     {
         totalFaith += increment;
         totalFaithValueText.GetComponent<TextMeshProUGUI>().text = totalFaith.ToString();
-        Debug.Log("Update total faith");
+
+        if (totalFaith <= 0)
+            SC_LevelManager.Instance.ResetLevel("Your followers lost their faith");
     }
 
     public void UpdateTotalFear(float increment)
@@ -43,5 +47,8 @@ public class SC_FaithSystem : MonoBehaviour
 
         totalFear += increment;
         totalFearValueText.GetComponent<TextMeshProUGUI>().text = totalFear.ToString();
+
+        if (totalFear > limitFear)
+            SC_LevelManager.Instance.ResetLevel("Your followers became unable to handle their fear");
     }
 }
