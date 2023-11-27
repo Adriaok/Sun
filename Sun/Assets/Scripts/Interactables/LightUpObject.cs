@@ -58,5 +58,7 @@ public class LightUpObject : MonoBehaviour
                 //Decrease total faith
             }
         }
+        else
+            Debug.Log("SAFE");
     }
 }

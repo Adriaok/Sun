@@ -8,9 +8,9 @@ public class SC_FaithSystem : MonoBehaviour
     private float totalFaith;
     private float totalFear;
 
-    private const float limitFear = 25f;
-    private const float fearThreshold_1 = 10f;
-    private const float fearThreshold_2 = 20f;
+    private const float limitFear = 45f;
+    private const float fearThreshold_1 = 20f;
+    private const float fearThreshold_2 = 30f;
 
     public GameObject totalFaithValueText;
     public GameObject totalFearValueText;
