@@ -8,6 +8,8 @@ public class SC_UI_Onboarding : MonoBehaviour
 
     [SerializeField]
     private List<GameObject> texts = new List<GameObject>();
+
+    [SerializeField]
     private GameObject onboardingUI;
 
     // Start is called before the first frame update
