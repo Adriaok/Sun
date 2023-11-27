@@ -42,18 +42,21 @@ public class LightUpObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Enter shadow");
-        SC_FaithSystem.Instance.UpdateTotalFear(10);
-
-
-        SC_Flashlight flashlight = other.GetComponentInParent<SC_Flashlight>();
-        if(flashlight != null)
+        if (shadow.active)
         {
-            SC_UI_MessageManager.Instance.ShowMessage("A Flashlight has been swallowed by the shadows");
-            //Call destroy flashlight function
-            flashlight.GetComponent<SC_Follower>().Die();
-            //Increase total fear
-            //Decrease total faith
+            Debug.Log("Enter shadow");
+            SC_FaithSystem.Instance.UpdateTotalFear(10);
+
+
+            SC_Flashlight flashlight = other.GetComponentInParent<SC_Flashlight>();
+            if (flashlight != null)
+            {
+                SC_UI_MessageManager.Instance.ShowMessage("A Flashlight has been swallowed by the shadows");
+                //Call destroy flashlight function
+                flashlight.GetComponent<SC_Follower>().Die();
+                //Increase total fear
+                //Decrease total faith
+            }
         }
     }
 }

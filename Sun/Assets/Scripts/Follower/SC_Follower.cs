@@ -167,10 +167,11 @@ public class SC_Follower : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    private void BeSacrificed()
+    public void BeSacrificed()
     {
         Die();
         SC_FaithSystem.Instance.UpdateTotalFear(10f);
+        SC_FaithSystem.Instance.UpdateTotalFaith(-20f);
         SC_UI_MessageManager.Instance.ShowMessage("A follower has been sacrificed");
         Destroy(GetComponent<SC_Target>().followerActions.gameObject);
     }

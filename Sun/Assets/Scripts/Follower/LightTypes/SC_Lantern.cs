@@ -9,6 +9,9 @@ public class SC_Lantern : MonoBehaviour
     private LightUpObject foundObject;
     private string raycastReturn;
     private bool isLightToggled = false;
+    private bool startSacrificeTimer = false;
+    private float sacrificeTimer = 0f;
+    private float sacrificeTime = 5f;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +35,12 @@ public class SC_Lantern : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(startSacrificeTimer)
+        {
+            sacrificeTimer += Time.deltaTime;
+            if (sacrificeTimer > sacrificeTime)
+                GetComponent<SC_Follower>().BeSacrificed();
+        }
     }
 
     public void CheckSphereCastCollision()
@@ -49,6 +58,11 @@ public class SC_Lantern : MonoBehaviour
                 if (light.enabled)
                 {
                     foundObject.LightUp();
+                    if (!startSacrificeTimer)
+                    {
+                        SC_UI_MessageManager.Instance.ShowMessage("A lantern is prepared to die");
+                        startSacrificeTimer = true;
+                    }
                 }
                 else
                 {
