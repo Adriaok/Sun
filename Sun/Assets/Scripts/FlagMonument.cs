@@ -35,7 +35,7 @@ public class FlagMonument : MonoBehaviour
 
         if (Vector3.Distance(player.position, transform.position) <= 10f &&
         currentFollowers >= minFollowerRequirement &&
-        Input.GetKeyDown(KeyCode.L))
+        Input.GetKeyDown(KeyCode.E))
         {
             StartCoroutine(ResponseToMonument());
 
@@ -57,11 +57,14 @@ public class FlagMonument : MonoBehaviour
         float tempZ = camera._transposer.m_FollowOffset.z;
         camera._transposer.m_FollowOffset.y += monumentOffset;
         camera._transposer.m_FollowOffset.z = -0.5f;
+
+        Debug.Log(monumentOffset);
      
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2);
 
         camera._transposer.m_FollowOffset.y = tempY;
         camera._transposer.m_FollowOffset.z = tempZ;
         particles.enableEmission = false;
+        this.enabled = false;
     }
 }

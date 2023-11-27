@@ -41,13 +41,13 @@ public class SC_Target : MonoBehaviour
             CheckIfToggleLight();
             CheckIfThrowing();
         }
-        else
-        {
-            if (isSelected && Input.GetKeyDown(KeyCode.R))
-            {
-                CheckIfRecruiting();
-            }
-        }
+        /* else
+         {
+             if (isSelected && Input.GetKeyDown(KeyCode.R))
+             {
+                 CheckIfRecruiting();
+             }
+         }*/
 
         UpdateMaterialColor();
         panelUI.transform.position = new Vector3(
