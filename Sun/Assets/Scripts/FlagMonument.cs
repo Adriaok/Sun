@@ -64,6 +64,9 @@ public class FlagMonument : MonoBehaviour
 
         camera._transposer.m_FollowOffset.y = tempY;
         camera._transposer.m_FollowOffset.z = tempZ;
+
+        Debug.Log(monumentOffset);
+
         particles.enableEmission = false;
         this.enabled = false;
     }

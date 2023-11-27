@@ -53,7 +53,7 @@ public class CameraController : MonoBehaviour
         if (Input.GetAxis("Mouse ScrollWheel") != 0)
         {
             cameraDistance = Input.GetAxis("Mouse ScrollWheel") * zoomSensitivity;
-            Debug.Log(cameraDistance);
+            //Debug.Log(cameraDistance);
 
             _transposer.m_FollowOffset.y = Mathf.Lerp(_transposer.m_FollowOffset.y, _transposer.m_FollowOffset.y - cameraDistance, 5f);
         }
