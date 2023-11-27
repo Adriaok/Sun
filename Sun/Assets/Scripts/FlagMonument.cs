@@ -16,6 +16,7 @@ public class FlagMonument : MonoBehaviour
 
     [SerializeField] private CameraController camera;
     private float monumentOffset = 15f;
+    private bool hasShownMessage = false;
 
     void Start()
     {
@@ -29,6 +30,15 @@ public class FlagMonument : MonoBehaviour
         {
             if (follower.Value.GetComponent<SC_Follower>().isInPlayerFaction)
                 currentFollowers++;
+        }
+
+        if(Vector3.Distance(player.position, transform.position) <= 10f && !hasShownMessage)
+        {
+            if (SC_UI_MessageManager.Instance.canShowMessages)
+            {
+                SC_UI_MessageManager.Instance.ShowMessage("Press 'E' to interact with the monument");
+                hasShownMessage = true;
+            }
         }
 
         if (Vector3.Distance(player.position, transform.position) <= 10f &&
@@ -45,6 +55,8 @@ public class FlagMonument : MonoBehaviour
             {
                 follower.CheckIfRecruiting();
             }
+
+            SC_FaithSystem.Instance.UpdateTotalFaith(10f + 10f * currentFollowers);
         }
 
     }

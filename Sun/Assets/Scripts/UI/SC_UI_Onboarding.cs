@@ -27,6 +27,9 @@ public class SC_UI_Onboarding : MonoBehaviour
         if (currentText < texts.Count)
             texts[currentText].SetActive(true);
         else
+        {
             onboardingUI.SetActive(false);
+            SC_UI_MessageManager.Instance.canShowMessages = true;
+        }
     }
 }

@@ -10,6 +10,8 @@ public class SC_UI_MessageManager : MonoBehaviour
     [SerializeField]
     private GameObject messagePrefab;
 
+    public bool canShowMessages = false;
+
     public static SC_UI_MessageManager Instance { get { return _instance; } }
 
 
