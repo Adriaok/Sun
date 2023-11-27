@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 2a94310028e2fc445b0cc4fba7b42789
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Roman Antique
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 57972ffe933db934ca9d0fb85e58024b, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
