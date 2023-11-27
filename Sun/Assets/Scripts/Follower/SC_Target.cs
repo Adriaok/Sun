@@ -16,7 +16,7 @@ public class SC_Target : MonoBehaviour
 
     private Transform cameraTransform;
 
-    private SC_UI_FollowerActions followerActions;
+    public SC_UI_FollowerActions followerActions;
 
     [SerializeField]
     private GameObject panelUI;

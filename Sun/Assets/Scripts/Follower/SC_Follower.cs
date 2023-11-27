@@ -172,6 +172,7 @@ public class SC_Follower : MonoBehaviour
         Die();
         SC_FaithSystem.Instance.UpdateTotalFear(10f);
         SC_UI_MessageManager.Instance.ShowMessage("A follower has been sacrificed");
+        Destroy(GetComponent<SC_Target>().followerActions.gameObject);
     }
 
     public void ChangeIsAfraid()
