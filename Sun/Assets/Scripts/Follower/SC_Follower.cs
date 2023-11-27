@@ -140,7 +140,7 @@ public class SC_Follower : MonoBehaviour
         }
         else if(isAfraid && timeSinceFearUpdateStart > maxUpdateTime)
         {
-            Debug.Log("out of time");
+            SC_FaithSystem.Instance.UpdateTotalFaith(-15f);
             BeSacrificed();
         }
     }

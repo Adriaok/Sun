@@ -11,6 +11,7 @@ public class SC_Flashlight : MonoBehaviour
     private bool isConsumed = false;
     private float timeSinceBirth = 0.0f;
     private bool isLightToggled = false;
+    private bool halfAlive = false;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,7 @@ public class SC_Flashlight : MonoBehaviour
         light.type = UnityEngine.LightType.Spot;
         light.color = Color.blue;
         light.intensity = 0.5f;
-        light.range = 1000.0f;
+        light.range = 50.0f;
         light.enabled = false;
     }
 
@@ -76,6 +77,12 @@ public class SC_Flashlight : MonoBehaviour
     private bool CheckIfConsumed()
     {
         timeSinceBirth += Time.deltaTime;
+
+        if (timeSinceBirth > 30f && !halfAlive)
+        {
+            SC_UI_MessageManager.Instance.ShowMessage("A flashlight is starting to burn out");
+            halfAlive = true;
+        }
 
         if (timeSinceBirth > 60.0f)
             return true;

@@ -62,8 +62,6 @@ public class FollowerManager : MonoBehaviour
             }
         }
 
-        Debug.Log("Follower count: " + followers.Count);
-
         if (followers.Count == 0)
             SC_LevelManager.Instance.ResetLevel("Lost all followers");
     }

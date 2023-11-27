@@ -19,7 +19,7 @@ public class SC_Whisp : MonoBehaviour
         light.type = UnityEngine.LightType.Spot;
         light.color = Color.red;
         light.intensity = 1.0f;
-        light.range = 500.0f;
+        light.range = 20.0f;
         light.enabled = false;
     }
 

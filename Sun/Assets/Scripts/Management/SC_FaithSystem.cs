@@ -8,7 +8,9 @@ public class SC_FaithSystem : MonoBehaviour
     private float totalFaith;
     private float totalFear;
 
-    private const float limitFear = 2f;
+    private const float limitFear = 25f;
+    private const float fearThreshold_1 = 10f;
+    private const float fearThreshold_2 = 20f;
 
     public GameObject totalFaithValueText;
     public GameObject totalFearValueText;
@@ -48,7 +50,12 @@ public class SC_FaithSystem : MonoBehaviour
         totalFear += increment;
         totalFearValueText.GetComponent<TextMeshProUGUI>().text = totalFear.ToString();
 
+        if (totalFear > fearThreshold_1)
+            totalFaith -= fearThreshold_1 / 2f;
+        else if (totalFear > fearThreshold_2)
+            totalFaith -= fearThreshold_2 / 2f;
+
         if (totalFear > limitFear)
-            SC_LevelManager.Instance.ResetLevel("Your followers became unable to handle their fear");
+                SC_LevelManager.Instance.ResetLevel("Your followers became unable to handle their fear");
     }
 }

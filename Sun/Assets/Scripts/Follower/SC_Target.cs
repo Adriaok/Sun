@@ -26,6 +26,8 @@ public class SC_Target : MonoBehaviour
         renderer = GetComponentInChildren<MeshRenderer>();
         cameraTransform = GetComponent<SC_Follower>().cameraTransform;
         followerActions = panelUI.GetComponent<SC_UI_FollowerActions>();
+        followerActions.InitActionObjectsWithID();
+        followerActions.DisableBeginningUnavailableActions();
         panelUI.SetActive(false);
     }
 

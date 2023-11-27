@@ -18,7 +18,7 @@ public class SC_Lantern : MonoBehaviour
         light.type = UnityEngine.LightType.Point;
         light.color = Color.green;
         light.intensity = 0.5f;
-        light.range = 200.0f;
+        light.range = 10.0f;
         light.enabled = false;
     }
 

@@ -13,8 +13,8 @@ public class SC_UI_FollowerActions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InitActionObjectsWithID();
-        DisableBeginningUnavailableActions();
+        //InitActionObjectsWithID();
+        //DisableBeginningUnavailableActions();
     }
 
     // Update is called once per frame
@@ -23,7 +23,7 @@ public class SC_UI_FollowerActions : MonoBehaviour
         
     }
 
-    private void InitActionObjectsWithID()
+    public void InitActionObjectsWithID()
     {
         for(int i = 0; i < actionObjects.Count; i++)
         {
