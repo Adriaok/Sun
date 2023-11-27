@@ -41,13 +41,6 @@ public class SC_Target : MonoBehaviour
             CheckIfToggleLight();
             CheckIfThrowing();
         }
-        /* else
-         {
-             if (isSelected && Input.GetKeyDown(KeyCode.R))
-             {
-                 CheckIfRecruiting();
-             }
-         }*/
 
         UpdateMaterialColor();
         panelUI.transform.position = new Vector3(
@@ -109,7 +102,6 @@ public class SC_Target : MonoBehaviour
         SC_FaithSystem.Instance.UpdateTotalFaith(20f);
         SC_UI_MessageManager.Instance.ShowMessage("A follower has been recruited");
 
-        followerActions.actionObjectsWithID["Action_Recruit"].SetActive(false);
         followerActions.actionObjectsWithID["Action_Select"].SetActive(true);
         followerActions.actionObjectsWithID["Action_Deselect"].SetActive(false);
 
@@ -144,12 +136,6 @@ public class SC_Target : MonoBehaviour
 
                 followerActions.actionObjectsWithID["Action_Select"].SetActive(false);
                 followerActions.actionObjectsWithID["Action_Deselect"].SetActive(true);
-
-                if (!isInPlayerFaction)
-                {
-                    followerActions.actionObjectsWithID["Action_Recruit"].SetActive(true);
-                }
-
             }
 
 
